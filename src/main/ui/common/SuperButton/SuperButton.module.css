@@ -1,0 +1,60 @@
+.default {
+
+
+    padding: 4px 8px;
+    margin: 0 15px 15px 0;
+    outline: none;
+    border: 2px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #baccd0;
+    background-color: rgb(44, 60, 65);
+    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    transition: box-shadow 0.2s;
+}
+.default:focus-visible {
+    border: 2px solid #eef5ee;
+    outline: none;
+}
+.default:hover {
+    transition: all 0.2s;
+    box-shadow: 0 7px 14px rgba(100, 95, 95, 0.8), 0 3px 6px rgba(227, 201, 201, 0.87);
+}
+.default:active {
+    background-color: #808080;
+}
+.default:disabled {
+    background-color: #777575;
+    border-color: #eee;
+    color: #444;
+    cursor: not-allowed;
+}
+
+.red {
+    display: block;
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 0 15px 15px 0;
+    outline: none;
+    border: 2px solid #5b5757;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #baccd0;
+    background-color: rgb(32, 45, 49);
+    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+    cursor: pointer;
+    user-select: none;
+    appearance: none;
+    touch-action: manipulation;
+    vertical-align: top;
+    transition: box-shadow 0.2s;
+}
