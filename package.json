@@ -2,7 +2,7 @@
   "name": "local-cards-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://defreezz.github.io/localcards",
+  "homepage": "https://defreezz.github.io/cards",
   "dependencies": {
     "axios": "^0.26.0",
     "react": "^17.0.2",
