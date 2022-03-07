@@ -5,7 +5,6 @@ import {PersonalInformation} from "./PersonalInformation/PersonalInformation";
 export const Profile = () => {
 
     const [profileEditingStatus, setProfileEditingStatus] = useState<boolean>(false)
-
     return (
         !profileEditingStatus
             ? <ProfileInfo
