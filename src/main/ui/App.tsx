@@ -6,25 +6,29 @@ import {Header} from "./Header/Header";
 import {ThunkType} from "../../store/store";
 import {Router} from "./Routes/Router";
 import {initializeApp} from "../../store/reducers/appReducer";
-import {SelectIsInit, SelectIsLoggedIn} from "../../store/selectors";
+import {selectIsInit, selectIsLoggedIn} from "../../store/selectors";
 import {Preloader} from "./common/Preloader/Preloader";
+import {LogIn} from "./LogIn/LogIn";
 
 export const App = () => {
     const dispatch = useDispatch<Dispatch<ThunkType>>()
-const isLoggedIn = useSelector(SelectIsLoggedIn)
-const isInitialized = useSelector(SelectIsInit)
+    const isLoggedIn = useSelector(selectIsLoggedIn)
+    const isInitialized = useSelector(selectIsInit)
 
     useEffect(() => {
-            dispatch(initializeApp())
-        }, [dispatch])
+        dispatch(initializeApp())
+    }, [dispatch])
 
-    if(!isInitialized) return <Preloader/>
+    if (!isInitialized) return <Preloader/>
+
     return (
-        <div className="App">
-            <HashRouter>
-                <Header/>
-                <Router/>
-            </HashRouter>
-        </div>
+        !isLoggedIn ?
+            <div className="App">
+                <HashRouter>
+                    <Header/>
+                    <Router/>
+                </HashRouter>
+            </div>
+            : <LogIn/>
     );
 };

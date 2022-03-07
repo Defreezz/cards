@@ -1,20 +1,20 @@
-import React, {Dispatch} from "react";
-import SuperInputText from "../common/SuperInputText/SuperInputText";
-import {useDispatch, useSelector} from "react-redux";
-import {selectName} from "../../../store/selectors";
-import {ThunkType} from "../../../store/store";
-import {updateProfile} from "../../../store/reducers/profileReducer";
+import React, {useState} from "react";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {PersonalInformation} from "./PersonalInformation/PersonalInformation";
 
 export const Profile = () => {
-    const name = useSelector(selectName)
-    const dispatch = useDispatch<Dispatch<ThunkType>>()
 
-const handlerRename = (name:string) => {
-  dispatch(updateProfile({name}))
-}
+    const [profileEditingStatus, setProfileEditingStatus] = useState<boolean>(false)
+
     return (
-        <>
-            <div>{name}</div>
-            <SuperInputText/>
-        </>)
+        !profileEditingStatus
+            ? <ProfileInfo
+                profileEditingStatus={profileEditingStatus}
+                changeProfileEditingStatus={setProfileEditingStatus}
+            />
+            : <PersonalInformation
+                profileEditingStatus={profileEditingStatus}
+                changeProfileEditingStatus={setProfileEditingStatus}
+            />
+    )
 };

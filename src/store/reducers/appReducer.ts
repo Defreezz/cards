@@ -33,8 +33,9 @@ export const initializeApp = (): ThunkType => async dispatch => {
     try {
         const response = await authAPI.me()
         dispatch(setUserData(response.data))
-        dispatch(setInitialization(true))
     } catch (e: any) {
 
+    }finally {
+        dispatch(setInitialization(true))
     }
 }

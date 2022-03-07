@@ -1,3 +1,3 @@
 import {AppStoreType} from "../store";
 
-export const SelectIsInit = (state:AppStoreType):boolean => state.app.isInitialized
+export const selectIsInit = (state:AppStoreType):boolean => state.app.isInitialized

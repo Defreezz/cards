@@ -15,10 +15,10 @@ type SetUserData = {
 }
 type UpdateProfile = {
     type: PROFILE_ACTIONS.UPDATE_PROFILE
-    payload:ProfileReducerType
+    payload:{name:string, avatar:string}
 }
 export const setUserData = (profile:ProfileReducerType):SetUserData =>
     ({type:PROFILE_ACTIONS.SET_USER_DATA,payload:{...profile}})
 
-export const modifyProfile = (changes: ProfileReducerType):UpdateProfile =>
+export const modifyProfile = (changes:{name:string, avatar:string} ):UpdateProfile =>
     ({type: PROFILE_ACTIONS.UPDATE_PROFILE,payload: {...changes}})

@@ -12,7 +12,7 @@ export const authAPI = {
 
     },
      updateProfile (profile:Partial<ProfileResponseType>) {
-         return  instance.put<any>(`/auth/me`,{profile})
+         return  instance.put<{updatedUser:{name:string,avatar:string}}>(`/auth/me`,profile)
 
     },
     async reg (email:string,password:string,rememberMe:boolean) {
