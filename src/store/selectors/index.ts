@@ -1,5 +1,5 @@
 export {selectName} from './selectName'
-export {selectStatus} from './selectStatus'
+export {selectOperationStatus} from './selectOperationStatus'
 export {selectErrorMessage} from './selectErrorMessage'
 export {selectIsLoggedIn} from './selectIsLoggedIn'
 export {selectIsInit} from './selectIsInit'

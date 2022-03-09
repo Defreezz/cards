@@ -10,6 +10,7 @@ import {selectIsInit, selectIsLoggedIn} from "../../store/selectors";
 import {Preloader} from "./common/Preloader/Preloader";
 import {LogIn} from "./LogIn/LogIn";
 
+
 export const App = () => {
     const dispatch = useDispatch<Dispatch<ThunkType>>()
     const isLoggedIn = useSelector(selectIsLoggedIn)
@@ -19,7 +20,7 @@ export const App = () => {
         dispatch(initializeApp())
     }, [dispatch])
 
-    if (!isInitialized) return <Preloader/>
+    if (!isInitialized) return <Preloader width={"40px"} height={"40px"}/>
 
     return (
         <HashRouter>
