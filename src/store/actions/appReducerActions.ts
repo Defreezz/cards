@@ -35,7 +35,7 @@ export const setIsLoggedIn = (isLoggedIn: boolean):SetIsLoggedIn =>
 export const setErrorMessage = (errorMessage: string | null):SetErrorMessage =>
     ({type: APP_ACTIONS.SET_ERROR_MESSAGE, payload:{errorMessage}});
 
-export const changeOperationStatus = (status: PendingStatusType):ChangeOperationStatus =>
+export const setOperationStatus = (status: PendingStatusType):ChangeOperationStatus =>
     ({type: APP_ACTIONS.CHANGE_OPERATION_STATUS, payload:{status}});
 
 export const setInitialization = (isInitialized: boolean):SetInitialization =>

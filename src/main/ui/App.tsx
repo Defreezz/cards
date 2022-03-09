@@ -22,13 +22,13 @@ export const App = () => {
     if (!isInitialized) return <Preloader/>
 
     return (
-        !isLoggedIn ?
+        <HashRouter>
+            {isLoggedIn ?
             <div className="App">
-                <HashRouter>
                     <Header/>
                     <Router/>
-                </HashRouter>
             </div>
-            : <LogIn/>
+            : <LogIn/>}
+        </HashRouter>
     );
 };

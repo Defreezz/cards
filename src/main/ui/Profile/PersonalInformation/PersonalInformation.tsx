@@ -3,45 +3,51 @@ import style from "./personalInformation.module.scss"
 import SuperInputText from "../../common/SuperInputText/SuperInputText";
 import SuperButton from "../../common/SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import {selectAvatar, selectEmail, selectName} from "../../../../store/selectors";
+import {selectProfileData} from "../../../../store/selectors";
 import {ThunkType} from "../../../../store/store";
 import {updateProfile} from "../../../../store/reducers/profileReducer";
 
 type PersonalInformationType = {
     changeProfileEditingStatus: (status: boolean) => void
-    profileEditingStatus: boolean
+
 }
 export const PersonalInformation = memo(({
                                              changeProfileEditingStatus,
-                                             profileEditingStatus,
                                          }: PersonalInformationType) => {
-    const dispatch = useDispatch<Dispatch<ThunkType>>()
-    const email = useSelector(selectEmail)
-    const avatar = useSelector(selectAvatar)
 
-    const [nickname, setNickname] = useState<string>(useSelector(selectName))
+    const dispatch = useDispatch<Dispatch<ThunkType>>()
+    const profile = useSelector(selectProfileData)
+
+    const [nickname, setNickname] = useState<string>(profile.name)
+    const [avatar, setAvatar] = useState<string|undefined>(profile.avatar)
 
     const handlerOnclickCancel = useCallback(() => {
-        changeProfileEditingStatus(!profileEditingStatus)
-    }, [changeProfileEditingStatus, profileEditingStatus])
-    const handlerOnclickSave = useCallback(() => {
-        dispatch(updateProfile({name:nickname}))
-    }, [dispatch,nickname])
+        changeProfileEditingStatus(false)
+    }, [changeProfileEditingStatus])
 
-    console.log("change")
+    const handlerOnclickSave = useCallback(() => {
+        dispatch(updateProfile({name:nickname,avatar}))
+    }, [dispatch,nickname,avatar])
+
+    const disableButton = nickname === profile.name && avatar === profile.avatar
     return (
         <div className={style.container}>
             <div className={style.title}>Personal information</div>
-            <img alt={"avatar"} src={avatar} className={style.ava}/>
+            <img alt={"avatar"} src={profile.avatar} className={style.ava}/>
             <div className={style.input_container}>
-                Nickname
+                <span>Nickname:</span>
                 <SuperInputText
                     value={nickname}
                     onChangeText={setNickname}
                 />
-                Email
+                <span>Email:</span>
                 <SuperInputText
-                    value={email}
+                    value={profile.email}
+                />
+                <span>URL avatar:</span>
+                <SuperInputText
+                    value={avatar}
+                    onChangeText={setAvatar}
                 />
             </div>
             <div className={style.button_container}>
@@ -49,11 +55,11 @@ export const PersonalInformation = memo(({
                     onClick={handlerOnclickCancel}
                 >
                     Cancel
-                </SuperButton
-
-                >
+                </SuperButton>
                 <SuperButton
-                    onClick={handlerOnclickSave}>
+                    disabled={disableButton}
+                    onClick={handlerOnclickSave}
+                >
                     Save
                 </SuperButton>
             </div>

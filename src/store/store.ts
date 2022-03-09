@@ -28,5 +28,3 @@ const rootReducers = combineReducers({
 export const store = createStore(rootReducers, applyMiddleware(thunk));
 
 
-// @ts-ignore
-window.store = store

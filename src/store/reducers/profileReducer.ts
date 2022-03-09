@@ -32,7 +32,7 @@ export const profileReducer = (state: ProfileReducerType = initState, action: Pr
 export const updateProfile = (changes: Pick<ProfileResponseType, "name" | "avatar">): ThunkType =>
     async dispatch => {
         try {
-            const response = await authAPI.updateProfile({...changes})
+            const response = await authAPI.updateProfile(changes)
             dispatch(modifyProfile(response.data.updatedUser))
         }
         catch (error){
