@@ -1,4 +1,6 @@
 .default {
+    min-width: 60px;
+    min-height: 35px;
     padding: 4px 8px;
     outline: none;
     border: 2px solid #aaa;

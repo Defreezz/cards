@@ -1,8 +1,12 @@
 import styles from './preloader.module.css';
+type PreloaderType = {
+    width?:string
+    height?:string
+}
 
-export const Preloader = () => (
+export const Preloader = ({width,height}:PreloaderType) => (
     <div className={styles.container}>
-        <div className={styles.loader} />
+        <div style={{width:width,height:height}} className={styles.loader} />
     </div>
 );
 

@@ -1,10 +1,10 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import thunk, { ThunkAction } from "redux-thunk";
-import { loginReducer } from "./reducers/loginReducer";
-import { registrationReducer } from "./reducers/registrationReducer";
-import { profileReducer } from "./reducers/profileReducer";
-import { resetPasswordReducer } from "./reducers/resetPasswordReducer";
-import { createPasswordReducer } from "./reducers/createPasswordReducer";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import thunk, {ThunkAction} from "redux-thunk";
+import {loginReducer} from "./reducers/loginReducer";
+import {registrationReducer} from "./reducers/registrationReducer";
+import {profileReducer} from "./reducers/profileReducer";
+import {resetPasswordReducer} from "./reducers/resetPasswordReducer";
+import {createPasswordReducer} from "./reducers/createPasswordReducer";
 import {ProfileReducersActionsType} from "./actions/profileReducerActions";
 import {appReducer} from "./reducers/appReducer";
 import {AppReducerActionsType} from "./actions/appReducerActions";

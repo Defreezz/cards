@@ -7,6 +7,7 @@ export const Profile = () => {
     const [profileEditingStatus, setProfileEditingStatus] = useState<boolean>(false)
 
     return (
+
         !profileEditingStatus
             ? <ProfileInfo
                 changeProfileEditingStatus={setProfileEditingStatus}

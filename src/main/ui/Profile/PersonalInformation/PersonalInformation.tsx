@@ -1,11 +1,12 @@
-import {Dispatch, memo, useCallback, useState} from "react";
+import React, {Dispatch, memo, useCallback, useState} from "react";
 import style from "./personalInformation.module.scss"
 import SuperInputText from "../../common/SuperInputText/SuperInputText";
 import SuperButton from "../../common/SuperButton/SuperButton";
 import {useDispatch, useSelector} from "react-redux";
-import {selectProfileData} from "../../../../store/selectors";
+import {selectOperationStatus, selectProfileData} from "../../../../store/selectors";
 import {ThunkType} from "../../../../store/store";
 import {updateProfile} from "../../../../store/reducers/profileReducer";
+import {Preloader} from "../../common/Preloader/Preloader";
 
 type PersonalInformationType = {
     changeProfileEditingStatus: (status: boolean) => void
@@ -17,17 +18,18 @@ export const PersonalInformation = memo(({
 
     const dispatch = useDispatch<Dispatch<ThunkType>>()
     const profile = useSelector(selectProfileData)
+    const operationStatus = useSelector(selectOperationStatus)
 
     const [nickname, setNickname] = useState<string>(profile.name)
-    const [avatar, setAvatar] = useState<string|undefined>(profile.avatar)
+    const [avatar, setAvatar] = useState<string | undefined>(profile.avatar)
 
     const handlerOnclickCancel = useCallback(() => {
         changeProfileEditingStatus(false)
     }, [changeProfileEditingStatus])
 
     const handlerOnclickSave = useCallback(() => {
-        dispatch(updateProfile({name:nickname,avatar}))
-    }, [dispatch,nickname,avatar])
+        dispatch(updateProfile({name: nickname, avatar}))
+    }, [dispatch, nickname, avatar])
 
     const disableButton = nickname === profile.name && avatar === profile.avatar
     return (
@@ -39,10 +41,6 @@ export const PersonalInformation = memo(({
                 <SuperInputText
                     value={nickname}
                     onChangeText={setNickname}
-                />
-                <span>Email:</span>
-                <SuperInputText
-                    value={profile.email}
                 />
                 <span>URL avatar:</span>
                 <SuperInputText
@@ -59,8 +57,10 @@ export const PersonalInformation = memo(({
                 <SuperButton
                     disabled={disableButton}
                     onClick={handlerOnclickSave}
-                >
-                    Save
+                > {operationStatus === "loading"
+                    ? <Preloader width={"6px"} height={"6px"}/>
+                    : "Save"
+                }
                 </SuperButton>
             </div>
         </div>

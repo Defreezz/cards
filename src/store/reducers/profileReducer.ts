@@ -1,7 +1,8 @@
-import {authAPI} from "../../api/api";
+import {profileAPI} from "../../api/api";
 import {modifyProfile, PROFILE_ACTIONS, ProfileReducersActionsType} from "../actions/profileReducerActions";
 import {ThunkType} from "../store";
 import {ProfileResponseType} from "../../api/types";
+import {setOperationStatus} from "../actions/appReducerActions";
 
 export type ProfileReducerType = ProfileResponseType // на тот случай, если в стейте будут лежать свойства отличные от бэка
 const initState: ProfileReducerType = {
@@ -32,11 +33,15 @@ export const profileReducer = (state: ProfileReducerType = initState, action: Pr
 export const updateProfile = (changes: Pick<ProfileResponseType, "name" | "avatar">): ThunkType =>
     async dispatch => {
         try {
-            const response = await authAPI.updateProfile(changes)
+            dispatch(setOperationStatus("loading"))
+            const response = await profileAPI.updateProfile(changes)
             dispatch(modifyProfile(response.data.updatedUser))
         }
         catch (error){
 
+        }
+        finally {
+            dispatch(setOperationStatus("completed"))
         }
     }
 
