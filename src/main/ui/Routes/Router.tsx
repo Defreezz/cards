@@ -22,7 +22,7 @@ export const Router = () => {
   return (
     <div>
       <Routes>
-        <Route path={"/"} element={<div>Empty page</div>} />
+        <Route path={"/"} element={<Profile />} />
         <Route path={Path.LogIn} element={ <LogIn />} />
         <Route path={Path.Registration} element={<Registration />} />
         <Route path={Path.Profile} element={<Profile />} />
