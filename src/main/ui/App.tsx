@@ -7,8 +7,8 @@ import {Router} from "./Routes/Router";
 import {initializeApp} from "../../store/reducers/appReducer";
 import {selectIsInit, selectIsLoggedIn} from "../../store/selectors";
 import {Preloader} from "./common/Preloader/Preloader";
-import {LogIn} from "./LogIn/LogIn";
 import {useTypedDispatch} from "../utils";
+import {RouterWithoutLogin} from "./Routes/RouterWithoutLogin";
 
 export const App = () => {
     const dispatch = useTypedDispatch()
@@ -28,7 +28,8 @@ export const App = () => {
                     <Header/>
                     <Router/>
             </div>
-            : <LogIn/>}
+            : <RouterWithoutLogin/>
+            }
         </HashRouter>
     );
 };

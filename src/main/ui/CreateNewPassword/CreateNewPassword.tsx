@@ -14,7 +14,7 @@ export const CreateNewPassword = () => {
 
     const handleSendNewPassword = useCallback(() => {
         dispatch(sendNewPassword(newPassword, token!))
-    }, [dispatch])
+    }, [dispatch,newPassword,token])
 
     return (
         <div>
@@ -27,7 +27,7 @@ export const CreateNewPassword = () => {
                 />
                 <SuperButton
                     onClick={handleSendNewPassword}
-                >
+                >yae
                     Create new password
                 </SuperButton>
             </div>
