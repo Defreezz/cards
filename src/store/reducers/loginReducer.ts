@@ -1,5 +1,7 @@
 import { Dispatch } from "redux";
 import { usersAPI } from "../../main/api/api";
+import {setUserData} from "../actions/profileReducerActions";
+import {setIsLoggedIn} from "../actions/appReducerActions";
 
 type InitStateType = typeof initState;
 type AllActionsType = ReturnType<typeof getLoginAC>
@@ -34,6 +36,9 @@ export const getLoginUserData = (email: string, password: string, rememberMe: bo
     usersAPI.logIn(email, password, rememberMe)
         .then(data => {
             dispatch(getLoginAC(data.email, data.name))
+
+            dispatch(setUserData(data))
+            dispatch(setIsLoggedIn(true))
         })
 }
 
