@@ -1,8 +1,9 @@
-import {profileAPI} from "../../api/api";
+
 import {modifyProfile, PROFILE_ACTIONS, ProfileReducersActionsType} from "../actions/profileReducerActions";
 import {ThunkType} from "../store";
-import {ProfileResponseType} from "../../api/types";
+import {ProfileResponseType} from "../../main/api/types";
 import {setOperationStatus} from "../actions/appReducerActions";
+import {usersAPI} from "../../main/api/api";
 
 export type ProfileReducerType = ProfileResponseType // на тот случай, если в стейте будут лежать свойства отличные от бэка
 const initState: ProfileReducerType = {
@@ -34,7 +35,7 @@ export const updateProfile = (changes: Pick<ProfileResponseType, "name" | "avata
     async dispatch => {
         try {
             dispatch(setOperationStatus("loading"))
-            const response = await profileAPI.updateProfile(changes)
+            const response = await usersAPI.updateProfile(changes)
             dispatch(modifyProfile(response.data.updatedUser))
         }
         catch (error){
