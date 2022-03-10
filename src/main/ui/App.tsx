@@ -10,7 +10,6 @@ import {selectIsInit, selectIsLoggedIn} from "../../store/selectors";
 import {Preloader} from "./common/Preloader/Preloader";
 import {LogIn} from "./LogIn/LogIn";
 
-
 export const App = () => {
     const dispatch = useDispatch<Dispatch<ThunkType>>()
     const isLoggedIn = useSelector(selectIsLoggedIn)
