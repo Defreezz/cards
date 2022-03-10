@@ -1,3 +1,6 @@
+import { Dispatch } from "redux";
+import { usersAPI } from "../../main/api/api";
+
 type InitStateType = typeof initState;
 type AllActionsType = ReturnType<typeof getLoginAC>
 
@@ -26,3 +29,11 @@ export const getLoginAC = (email: string, name: string) => {
         name,
     } as const
 }
+
+export const getLoginUserData = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+    usersAPI.logIn(email, password, rememberMe)
+        .then(data => {
+            dispatch(getLoginAC(data.email, data.name))
+        })
+}
+
