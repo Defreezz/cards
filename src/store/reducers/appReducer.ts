@@ -1,10 +1,4 @@
-import {
-    APP_ACTIONS,
-    AppReducerActionsType,
-    setErrorMessage,
-    setInitialization,
-    setIsLoggedIn
-} from "../actions/appReducerActions";
+import {APP_ACTIONS, AppReducerActionsType, setInitialization, setIsLoggedIn} from "../actions/appReducerActions";
 import {ThunkType} from "../store";
 import {setUserData} from "../actions/profileReducerActions";
 import {usersAPI} from "../../main/api/api";
@@ -46,14 +40,5 @@ export const initializeApp = (): ThunkType => async dispatch => {
         dispatch(setIsLoggedIn(false))
     }finally {
         dispatch(setInitialization(true))
-    }
-}
-
-export const logout = (): ThunkType => async dispatch => {
-    try {
-        await usersAPI.logout()
-        dispatch(setIsLoggedIn(false))
-    } catch (e: any) {
-        dispatch(setErrorMessage(e))
     }
 }

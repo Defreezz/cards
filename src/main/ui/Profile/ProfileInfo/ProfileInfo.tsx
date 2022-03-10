@@ -1,10 +1,11 @@
 import style from "./profileInfo.module.scss"
 import SuperButton from "../../common/SuperButton/SuperButton";
-import React, {Dispatch, memo, useCallback} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, {memo, useCallback} from "react";
+import {useSelector} from "react-redux";
 import {selectProfileData} from "../../../../store/selectors";
-import {ThunkType} from "../../../../store/store";
-import {logout} from "../../../../store/reducers/appReducer";
+import {logout} from "../../../../store/reducers/profileReducer";
+import {useTypedDispatch} from "../../../utils";
+
 
 type ProfileInfoType = {
     changeProfileEditingStatus: (status: boolean) => void
@@ -13,13 +14,14 @@ type ProfileInfoType = {
 export const ProfileInfo = memo(({
                                      changeProfileEditingStatus,
                                  }: ProfileInfoType) => {
-    const dispatch = useDispatch<Dispatch<ThunkType>>()
+    const dispatch = useTypedDispatch()
     const profile = useSelector(selectProfileData)
 
-    const handlerChangeProfileEditingStatus = useCallback(() => {
+    const handleChangeProfileEditingStatus = useCallback(() => {
         changeProfileEditingStatus(true)
     }, [changeProfileEditingStatus])
-    const handlerLogout = useCallback(() => {
+
+    const handleLogoutClick = useCallback(() => {
         dispatch(logout())
     }, [dispatch])
 
@@ -30,7 +32,7 @@ export const ProfileInfo = memo(({
                     <img alt={"avatar"} src={profile.avatar} className={style.ava}/>
                     <div className={style.name}>{profile.name}</div>
                     <SuperButton
-                        onClick={handlerChangeProfileEditingStatus}
+                        onClick={handleChangeProfileEditingStatus}
                     >
                         Edit Profile
                     </SuperButton>
@@ -38,7 +40,7 @@ export const ProfileInfo = memo(({
                 <div className={style.inner_info_bottom}>
                     <div className={style.logout_button}>
                         <SuperButton
-                        onClick={handlerLogout}
+                        onClick={handleLogoutClick}
                     >
                         Logout
                     </SuperButton>

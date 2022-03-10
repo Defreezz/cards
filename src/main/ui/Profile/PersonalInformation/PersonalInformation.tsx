@@ -1,12 +1,12 @@
-import React, {Dispatch, memo, useCallback, useState} from "react";
+import React, {memo, useCallback, useState} from "react";
 import style from "./personalInformation.module.scss"
 import SuperInputText from "../../common/SuperInputText/SuperInputText";
 import SuperButton from "../../common/SuperButton/SuperButton";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {selectOperationStatus, selectProfileData} from "../../../../store/selectors";
-import {ThunkType} from "../../../../store/store";
 import {updateProfile} from "../../../../store/reducers/profileReducer";
 import {Preloader} from "../../common/Preloader/Preloader";
+import {useTypedDispatch} from "../../../utils";
 
 type PersonalInformationType = {
     changeProfileEditingStatus: (status: boolean) => void
@@ -16,7 +16,7 @@ export const PersonalInformation = memo(({
                                              changeProfileEditingStatus,
                                          }: PersonalInformationType) => {
 
-    const dispatch = useDispatch<Dispatch<ThunkType>>()
+    const dispatch = useTypedDispatch()
     const profile = useSelector(selectProfileData)
     const operationStatus = useSelector(selectOperationStatus)
 

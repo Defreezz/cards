@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import { usersAPI } from "../../main/api/api";
 import {setUserData} from "../actions/profileReducerActions";
 import {setIsLoggedIn} from "../actions/appReducerActions";
+import {ThunkType} from "../store";
 
 type InitStateType = typeof initState;
 type AllActionsType = ReturnType<typeof getLoginAC>
@@ -40,5 +41,20 @@ export const getLoginUserData = (email: string, password: string, rememberMe: bo
             dispatch(setUserData(data))
             dispatch(setIsLoggedIn(true))
         })
+}
+
+export const forgotPassword = (email: string): ThunkType => async dispatch => {
+    try {
+        await usersAPI.forgotPassword(email)
+    } catch (error) {
+
+    }
+}
+export const sendNewPassword = (password: string,token:string): ThunkType => async dispatch => {
+    try {
+        await usersAPI.newPassword(password,token)
+    } catch (error) {
+
+    }
 }
 

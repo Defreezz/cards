@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {getLoginUserData} from "../../../store/reducers/loginReducer";
 import {useDispatch} from "react-redux";
+import {NavLink} from "react-router-dom";
+import {Path} from "../Routes/Router";
 
 export const LogIn = () => {
 
@@ -41,6 +43,14 @@ export const LogIn = () => {
             <div>
                 <button onClick={onClickButtonLogin}>Login</button>
             </div>
+            <NavLink
+                style={{
+                textDecoration: "none",
+                color: "#d39191"}}
+                to={Path.ResetPassword}
+            >
+                Forgot password?
+            </NavLink>
         </div>
     );
 };
