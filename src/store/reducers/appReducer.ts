@@ -1,7 +1,7 @@
 import {APP_ACTIONS, AppReducerActionsType, setInitialization, setIsLoggedIn} from "../actions/appReducerActions";
 import {ThunkType} from "../store";
 import {setUserData} from "../actions/profileReducerActions";
-import {usersAPI} from "../../main/api/api";
+import {userAPI} from "../../main/api/api";
 
 export type PendingStatusType = 'idle' | 'failed' | 'completed' | 'loading';
 type InitStateTypes = {
@@ -33,7 +33,7 @@ export const appReducer = (state: InitStateTypes = initState, action: AppReducer
 
 export const initializeApp = (): ThunkType => async dispatch => {
     try {
-        const response = await usersAPI.me()
+        const response = await userAPI.me()
         dispatch(setUserData(response.data))
         dispatch(setIsLoggedIn(true))
     } catch (e: any) {

@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { usersAPI } from "../../main/api/api";
+import { userAPI } from "../../main/api/api";
 import {setUserData} from "../actions/profileReducerActions";
 import {setIsLoggedIn} from "../actions/appReducerActions";
 import {ThunkType} from "../store";
@@ -34,7 +34,7 @@ export const getLoginAC = (email: string, name: string) => {
 }
 
 export const getLoginUserData = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
-    usersAPI.logIn(email, password, rememberMe)
+    userAPI.logIn(email, password, rememberMe)
         .then(data => {
             dispatch(getLoginAC(data.email, data.name))
 
@@ -45,14 +45,14 @@ export const getLoginUserData = (email: string, password: string, rememberMe: bo
 
 export const forgotPassword = (email: string): ThunkType => async dispatch => {
     try {
-        await usersAPI.forgotPassword(email)
+        await userAPI.forgotPassword(email)
     } catch (error) {
 
     }
 }
 export const sendNewPassword = (password: string,token:string): ThunkType => async dispatch => {
     try {
-        await usersAPI.newPassword(password,token)
+        await userAPI.newPassword(password,token)
     } catch (error) {
 
     }

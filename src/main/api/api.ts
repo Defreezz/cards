@@ -8,7 +8,7 @@ export const instance = axios.create({
     baseURL: "https://neko-back.herokuapp.com/2.0" //process.env.REACT_APP_BACK_URL || 'http://localhost:7542/2.0/',
 })
 
-export const usersAPI = {
+export const userAPI = {
     me() {
         return instance.post<ProfileResponseType>(`/auth/me`, {})
 
@@ -33,5 +33,11 @@ export const usersAPI = {
     },
     newPassword(password:string,resetPasswordToken:string){
         return instance.post(`/auth/set-new-password/`,{password,resetPasswordToken})
+    }
+}
+
+export const registrationAPI = {
+    registration(email: string,password: string) {
+        return instance.post('/auth/register',{email,password})
     }
 }

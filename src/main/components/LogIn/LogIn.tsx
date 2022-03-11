@@ -43,14 +43,28 @@ export const LogIn = () => {
             <div>
                 <button onClick={onClickButtonLogin}>Login</button>
             </div>
-            <NavLink
-                style={{
-                textDecoration: "none",
-                color: "#d39191"}}
-                to={Path.ResetPassword}
-            >
-                Forgot password?
-            </NavLink>
+            <div>
+                <NavLink
+                    style={{
+                        textDecoration: "none",
+                        color: "#d39191"
+                    }}
+                    to={Path.ResetPassword}
+                >
+                    Forgot password?
+                </NavLink>
+            </div>
+            <div>
+                <NavLink
+                    style={{
+                        textDecoration: "none",
+                        color: "#d39191"
+                    }}
+                    to={Path.Registration}
+                >
+                    Registration
+                </NavLink>
+            </div>
         </div>
     );
 };

@@ -1,6 +1,5 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
-import {registrationReducer, registrationThunk} from "../../../store/reducers/registrationReducer";
-import {registrationAPI} from "../../../api/RegistrationAPI";
+import React, {useState} from "react";
+import {registrationThunk} from "../../../store/reducers/registrationReducer";
 import {useDispatch} from "react-redux";
 
 export const Registration = () => {
@@ -22,8 +21,9 @@ export const Registration = () => {
 
 
   return <div>
-    <h1>Registration</h1>
+
     <div style={{display: 'flex',flexDirection: 'column', width: '400px', margin: '0 auto'}}>
+      <h1>Registration</h1>
       <input type="text" placeholder='E-mail' onChange={e => setEmail(e.currentTarget.value)}/>
       <input type="password" placeholder='Password' onChange={e => setPassword(e.currentTarget.value)}/>
       <input type="password" placeholder='ConfirmPassword' onChange={e => setConfirmPassword(e.currentTarget.value)}/>

@@ -27,7 +27,7 @@ export const CreateNewPassword = () => {
                 />
                 <SuperButton
                     onClick={handleSendNewPassword}
-                >yae
+                >
                     Create new password
                 </SuperButton>
             </div>
