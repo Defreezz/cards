@@ -1,4 +1,4 @@
-import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent} from 'react'
+import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes, KeyboardEvent, memo} from 'react'
 import s from './SuperInputText.module.css'
 
 // тип пропсов обычного инпута
@@ -13,7 +13,7 @@ type SuperInputTextPropsType = DefaultInputPropsType & { // и + ещё проп
     spanClassName?: string
 }
 
-const SuperInputText: React.FC<SuperInputTextPropsType> = (
+const SuperInputText: React.FC<SuperInputTextPropsType> = memo ((
     {
         type, // достаём и игнорируем чтоб нельзя было задать другой тип инпута
         onChange, onChangeText,
@@ -25,7 +25,6 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
     }
 ) => {
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-        debugger
         onChange // если есть пропс onChange
         && onChange(e) // то передать ему е (поскольку onChange не обязателен)
         onChangeText && onChangeText(e.currentTarget.value)
@@ -54,6 +53,6 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
             {error && <span className={finalSpanClassName}>{error}</span>}
         </>
     )
-}
+})
 
 export default SuperInputText

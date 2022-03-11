@@ -1,0 +1,1 @@
+export const forgotPasswordMessage = `<div style='background-color:lime;padding:15px'><a href='https://defreezz.github.io/cards/#/createNewPassword/$token$'>Password recovery link</a></div>`
