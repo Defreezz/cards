@@ -3,4 +3,8 @@ body{
     -webkit-font-smoothing: antialiased;
     background-color: #3c3f41;
     color: #61dafb;
+    margin:0;
+}
+#root{
+    height: 100vh;
 }

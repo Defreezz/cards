@@ -1,0 +1,32 @@
+.container{
+  width: 413px;
+  height: 540px;
+  background: #F9F9FE;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  .title{
+   // font-family: Poppins, serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 33px;
+    color: #2D2E46;
+  }
+  .ava{
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    //background-color: #4f4e4d;
+  }
+  .input_container{
+    color: #4f4e4d;
+    display: flex;
+    flex-direction: column;
+  }
+  .button_container{
+    display: flex;
+  }
+}
