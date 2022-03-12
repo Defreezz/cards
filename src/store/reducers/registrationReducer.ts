@@ -1,5 +1,6 @@
 import {Dispatch} from "redux";
-import {registrationAPI} from "../../api/RegistrationAPI";
+import {registrationAPI} from "../../main/api/api";
+
 
 type InitStateType = typeof initState;
 
@@ -30,7 +31,7 @@ export const registrationAC = () => {
 
 export const registrationThunk = (email: string, password:string) => (dispatch: Dispatch) => {
     registrationAPI.registration(email,password)
-        .then((res) => {
+        .then(() => {
             dispatch(registrationAC())
         })
 }

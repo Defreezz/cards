@@ -23,12 +23,14 @@ export const App = () => {
 
     return (
         <HashRouter>
-            {isLoggedIn ?
-            <div className="App">
+            {isLoggedIn
+                ? <div className="App">
                     <Header/>
                     <Router/>
-            </div>
-            : <RouterWithoutLogin/>
+                </div>
+                : <div>
+                    <RouterWithoutLogin/>
+                </div>
             }
         </HashRouter>
     );
