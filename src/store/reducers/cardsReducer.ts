@@ -1,5 +1,5 @@
 import {CardsResponseType} from "../../main/api/types";
-import {CardsReducerActionsType} from "../actions/cardsReducerActions";
+import {CARD_ACTIONS, CardsReducerActionsType} from "../actions/cardsReducerActions";
 
 
 const initState: CardsResponseType = {
@@ -24,6 +24,11 @@ const initState: CardsResponseType = {
 
 export const packReducer = (state = initState, action: CardsReducerActionsType): CardsResponseType => {
     switch (action.type) {
+        case CARD_ACTIONS.SET_CARDS:
+            return {
+                ...state,
+                ...action.payload
+            }
         default:
             return state;
     }

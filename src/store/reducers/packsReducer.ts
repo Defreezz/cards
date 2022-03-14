@@ -21,6 +21,7 @@ export const packReducer = (state = initState, action: PacksReducerActionsType):
     switch (action.type) {
         case PACK_ACTIONS.SET_PACKS:
             return {
+                ...state,
                 ...action.payload
             }
         default:
