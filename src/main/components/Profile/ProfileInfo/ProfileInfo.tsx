@@ -1,10 +1,11 @@
 import style from "./profileInfo.module.scss"
 import SuperButton from "../../common/SuperButton/SuperButton";
-import React, {memo, useCallback} from "react";
+import {memo, useCallback} from "react";
 import {useSelector} from "react-redux";
 import {selectProfileData} from "../../../../store/selectors";
 import {logout} from "../../../../store/reducers/profileReducer";
 import {useTypedDispatch} from "../../../utils";
+import {Table} from "../../PacksList/Table/Table";
 
 
 type ProfileInfoType = {
@@ -47,6 +48,7 @@ export const ProfileInfo = memo(({
                     </div>
                 </div>
             </div>
+            <Table/>
         </div>
     )
 })

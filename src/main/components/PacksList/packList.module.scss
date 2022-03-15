@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1300px;
+  margin: 60px auto;
+
+  .sidebar {
+    width: 20%;
+    min-width: 150px;
+    height: 800px;
+    background: #7d9baf;
+    border-radius: 8px 0 0 8px;
+
+    .doubleRange {
+      padding: 10px;
+    }
+  }
+}

@@ -8,13 +8,8 @@ type NavbarItemType = {
     name: string
 }
 const navbarItems: NavbarItemType[] = [
-    {name: "Login", path: Path.LogIn},
-    {name: "Registration", path: Path.Registration},
     {name: "Profile", path: Path.Profile},
-    {name: "404", path: Path.Error404},
-    {name: "Reset password", path: Path.ResetPassword},
-    {name: "Create  password", path: Path.CreatePassword},
-    {name: "SuperComponents", path: Path.SuperComponents},
+    {name: "Packs list", path: Path.PackList},
 ]
 
 const NavbarItem = ({path, name}: NavbarItemType) => {
