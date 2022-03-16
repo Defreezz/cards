@@ -6,6 +6,7 @@ import {profileReducer} from "./reducers/profileReducer";
 import {ProfileReducersActionsType} from "./actions/profileReducerActions";
 import {appReducer} from "./reducers/appReducer";
 import {AppReducerActionsType} from "./actions/appReducerActions";
+import {packReducer} from "./reducers/packsReducer";
 
 export type AppStoreType = ReturnType<typeof rootReducers>;
 
@@ -21,6 +22,7 @@ const rootReducers = combineReducers({
   logIn: loginReducer,
   registration: registrationReducer,
   profile: profileReducer,
+  packs:packReducer
 });
 export const store = createStore(rootReducers, applyMiddleware(thunk));
 

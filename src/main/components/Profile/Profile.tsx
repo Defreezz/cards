@@ -1,19 +1,21 @@
-import React, {useState} from "react";
-import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {PersonalInformation} from "./PersonalInformation/PersonalInformation";
+import  {useState} from 'react';
+import {ProfileInfo} from './ProfileInfo/ProfileInfo';
+import {PersonalInformation} from './PersonalInformation/PersonalInformation';
+import style from './profile.module.scss'
 
 export const Profile = () => {
 
     const [profileEditingStatus, setProfileEditingStatus] = useState<boolean>(false)
 
     return (
-
-        !profileEditingStatus
+        <div className={style.container}>
+            {!profileEditingStatus
             ? <ProfileInfo
-                changeProfileEditingStatus={setProfileEditingStatus}
-            />
+            changeProfileEditingStatus={setProfileEditingStatus}
+        />
             : <PersonalInformation
-                changeProfileEditingStatus={setProfileEditingStatus}
-            />
+            changeProfileEditingStatus={setProfileEditingStatus}
+        />}
+        </div>
     )
 };

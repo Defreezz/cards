@@ -2,7 +2,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    min-width: 860px;
     background-color: #5a6062;
     border: 2px solid white;
     border-radius: 8px;
