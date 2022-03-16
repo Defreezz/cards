@@ -2,6 +2,7 @@ import style from './table.module.scss'
 import {PacksSearch} from "./SearchPack";
 import {TableHeader} from "./TableHeader";
 import {TableItem} from "./TableItem";
+import {Pagination} from "@mui/material";
 
 export const Table = () => {
     const packs = [
@@ -23,7 +24,7 @@ export const Table = () => {
                 {packs.map(p => <TableItem pack={p.card} cre={p.cre} name={p.name} lust={p.lactup}/>)}
             </div>
             <div>
-                тут будет пагинация
+                <Pagination count={10} variant="outlined" shape="rounded" />
             </div>
         </div>
     )
