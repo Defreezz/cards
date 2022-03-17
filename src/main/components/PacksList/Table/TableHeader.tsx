@@ -21,6 +21,7 @@ export const TableHeader = () => {
         itemNameSort
     } = useTableSort()
 
+
     const user_id = useSelector(selectUserId)
     const {pathname} = useLocation()
 
@@ -30,7 +31,7 @@ export const TableHeader = () => {
         }else{
             dispatch(getPacks({user_id}))
         }
-    }, [itemNameSort, userNameSort, quantitySort, lastUpdate,user_id,dispatch])
+    }, [itemNameSort, userNameSort, quantitySort, lastUpdate,user_id,dispatch,pathname])
 
     return (
         <div className={style.headerTableContainer}>

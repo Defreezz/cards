@@ -8,7 +8,7 @@ import {LogIn} from "../LogIn/LogIn";
 export enum Path {
     LogIn = "/login",
     Registration = "/registration",
-    ResetPassword = "/resetPassword",
+    ResetPassword = "/reset-password",
     CreatePassword = "/createNewPassword/:token/*",
 
 }
