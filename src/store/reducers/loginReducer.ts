@@ -1,7 +1,7 @@
 import {Dispatch} from "redux";
-import { userAPI } from "../../main/api/api";
+import {userAPI} from "../../main/api/api";
 import {setUserData} from "../actions/profileReducerActions";
-import {setIsLoggedIn} from "../actions/appReducerActions";
+import {setErrorMessage, setIsLoggedIn, setOperationStatus} from "../actions/appReducerActions";
 import {ThunkType} from "../store";
 
 type InitStateType = typeof initState;
@@ -36,17 +36,22 @@ export const getLoginAC = (email: string, name: string) => {
 }
 
 export const getLoginUserData = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
-
+    dispatch(setOperationStatus("loading"))
     userAPI.logIn(email, password, rememberMe)
         .then(data => {
             dispatch(getLoginAC(data.email, data.name))
-
             dispatch(setUserData(data))
             dispatch(setIsLoggedIn(true))
+            dispatch(setErrorMessage(""))
+
         })
         .catch(err => {
-            const error = err.response ? err.response.data.error : (err.message + ', more details in the console');
-            console.log('Error: ', error)
+            // const error = err.response ? err.response.data.error : (err.message + ', more details in the console');
+            // console.log('Error: ', error)
+            dispatch(setErrorMessage(err.response ? err.response.data.error : err.message))
+        })
+        .finally( () => {
+            dispatch((setOperationStatus("completed")))
         })
 }
 
