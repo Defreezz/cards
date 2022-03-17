@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import {getLoginUserData} from "../../../store/reducers/loginReducer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import SuperInputText from "../common/SuperInputText/SuperInputText";
 import SuperButton from "../common/SuperButton/SuperButton";
 import SuperCheckbox from "../common/SuperCheckbox/SuperCheckbox";
 import {NavLink} from "react-router-dom";
 import {Path} from "../Routes/Router";
+import style from "./LogIn.module.css"
+import {selectOperationStatus} from "../../../store/selectors";
+import {Preloader} from "../common/Preloader/Preloader";
 
 export const LogIn = () => {
 
@@ -13,6 +16,7 @@ export const LogIn = () => {
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [checked, setChecked] = useState<boolean>(false)
+    const operationStatus = useSelector(selectOperationStatus)
     const onClickButtonLogin = () => {
         dispatch(getLoginUserData(email, password, checked))
         setEmail('')
@@ -20,8 +24,12 @@ export const LogIn = () => {
         setChecked(false)
     }
 
+    if (operationStatus === 'loading') {
+        return <div className={style.preloader}><Preloader width={"40px"} height={"40px"}/></div>
+    }
+
     return (
-        <div>
+        <div className={style.login}>
             <div>
                 Sign in
             </div>
