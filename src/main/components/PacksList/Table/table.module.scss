@@ -37,7 +37,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 120px;
+      min-width: 150px;
       height: 80%;
       cursor: pointer;
 
@@ -71,7 +71,7 @@
     }
   }
 
-  .itemsWrapper{
+  .itemsWrapper {
     width: 90%;
     height: 75%;
     margin-bottom: 14px;
@@ -86,17 +86,26 @@
       align-items: center;
       justify-content: space-around;
 
-      .tableItem{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 120px;
+      .tableItemName {
+        //display: flex;
+        text-align: start;
+        width: 150px;
         height: 80%;
         cursor: pointer;
         color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
       }
-      .tableItemButton{
+      .tableItem{
+        text-align: center;
+        width: 150px;
+        height: 80%;
+        color: white;
+      }
+
+      .tableItemButton {
         display: flex;
         justify-content: center;
         width: 200px;

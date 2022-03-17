@@ -5,7 +5,7 @@ import {getPacks} from "../../../../store/reducers/packsReducer";
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {selectUserId} from "../../../../store/selectors";
+import {selectSearchPackName, selectUserId} from "../../../../store/selectors";
 
 export const TableHeader = () => {
     const dispatch = useTypedDispatch()
@@ -23,6 +23,7 @@ export const TableHeader = () => {
 
 
     const user_id = useSelector(selectUserId)
+    const packName = useSelector(selectSearchPackName)
     const {pathname} = useLocation()
 
     useEffect(() => {
@@ -31,7 +32,7 @@ export const TableHeader = () => {
         }else{
             dispatch(getPacks({user_id}))
         }
-    }, [itemNameSort, userNameSort, quantitySort, lastUpdate,user_id,dispatch,pathname])
+    }, [itemNameSort, userNameSort, quantitySort, lastUpdate,user_id,dispatch,pathname,packName])
 
     return (
         <div className={style.headerTableContainer}>

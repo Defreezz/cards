@@ -1,8 +1,6 @@
 import style from './table.module.scss'
 import {PackType} from "../../../api/types";
 import SuperButton from "../../common/SuperButton/SuperButton";
-import {useSelector} from "react-redux";
-import {selectProfileId} from "../../../../store/selectors/selectProfileId";
 import {memo, useCallback} from "react";
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {deletePack} from "../../../../store/reducers/packsReducer";
@@ -24,7 +22,7 @@ export const TableItem = memo(({pack}: TableItemType) => {
 
     return (
         <div className={style.itemsBlock}>
-            <div className={style.tableItem}>{pack.name}</div>
+            <div className={style.tableItemName}>{pack.name}</div>
             <div className={style.tableItem}>{pack.cardsCount}</div>
             <div className={style.tableItem}>{lastUpdate}</div>
             <div className={style.tableItem}>{pack.user_name}</div>
