@@ -26,7 +26,7 @@ export const Table = () => {
 
             }
             <div>
-                тут будет пагинация
+                <Pagination count={10} variant="outlined" shape="rounded" />
             </div>
         </div>
     )
