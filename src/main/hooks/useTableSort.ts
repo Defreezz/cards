@@ -1,5 +1,6 @@
 import {useCallback, useMemo, useState} from "react";
 import {useTypedDispatch} from "./useTypedDispatch";
+import {setSortPacks} from "../../store/actions/packsReducerActions";
 
 export const useTableSort = () => {
     const dispatch = useTypedDispatch()
@@ -9,40 +10,42 @@ export const useTableSort = () => {
     const [quantitySort, setQuantitySort] = useState<"0cardsCount" | "1cardsCount">("0cardsCount");
     const [lastUpdate, setLastUpdate] = useState<"0updated" | "1updated">("0updated");
 
+
     const handleSortName = useCallback(() => {
         if (itemNameSort === "1name") {
-            setItemNameSort(() => "0name");
+            setItemNameSort(() => "0name")
         } else {
-            setItemNameSort(() => "1name");
+            setItemNameSort(() => "1name")
         }
-        //dispatch(кокой-то action(itemNameSort));
+        dispatch(setSortPacks(itemNameSort))
     }, [dispatch, itemNameSort])
 
     const handleUserNameSort = useCallback(() => {
         if (userNameSort === "1user_id") {
-            setUserNameSort(() => "0user_id");
+            setUserNameSort(() => "0user_id")
         } else {
-            setUserNameSort(() => "1user_id");
+            setUserNameSort(() => "1user_id")
         }
-        //dispatch(кокой-то action(userIdValue));
+        dispatch(setSortPacks(userNameSort))
     }, [dispatch, userNameSort])
 
     const handleQuantitySort = useCallback(() => {
         if (quantitySort === "1cardsCount") {
-            setQuantitySort(() => "0cardsCount");
+            setQuantitySort(() => "0cardsCount")
         } else {
-            setQuantitySort(() => "1cardsCount");
+            setQuantitySort(() => "1cardsCount")
         }
-        //dispatch(кокой-то action(quantitySort));
+        dispatch(setSortPacks(quantitySort))
     }, [dispatch, quantitySort])
 
     const handleLastUpdateSort = useCallback(() => {
         if (lastUpdate === "1updated") {
-            setLastUpdate(() => "0updated");
+            setLastUpdate(() => "0updated")
         } else {
-            setLastUpdate(() => "1updated");
+            setLastUpdate(() => "1updated")
         }
-        //dispatch(кокой-то action(lastUpdate));
+        dispatch(setSortPacks(lastUpdate))
+
     }, [dispatch, lastUpdate])
     return useMemo(() => ({
             handleSortName,

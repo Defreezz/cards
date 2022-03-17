@@ -52,14 +52,14 @@ export const registrationAPI = {
 }
 
 export const packAPI = {
-    getPacks(queryParams: Partial<QueryPackParamsType>) {
+    getPacks(queryParams?: Partial<QueryPackParamsType>) {
         return instance.get<PacksResponseType>(`/cards/pack`, {params: queryParams})
     },
     addPack(pack: NewPackType) {
         return instance.post<{}>(`/cards/pack`, {cardsPack: pack})
     },
     deletePack(id: string) {
-        return instance.delete<{}>(`/cards/pack`, {params: id})
+        return instance.delete<{}>(`/cards/pack`, {params: {id}})
     },
     updatePack(update: UpdatePackType) {
         return instance.put<{}>(`/cards/pack`,{update})
@@ -74,7 +74,7 @@ export const cardsApi = {
         return instance.post<{}>(`/cards/card`, {card})
     },
     deleteCard(id: string) {
-        return instance.delete<{}>(`/cards/card`, {params: id})
+        return instance.delete<{}>(`/cards/card`, {params: {id}})
     },
     updatePack(update: UpdateCardType) {
         return instance.put<{}>(`/cards/card`,{update})

@@ -22,29 +22,30 @@ export type QueryPackParamsType = {
     user_id: string;
 }
 
+export type PackType = {
+    _id: string
+    user_id: string
+    user_name: string
+    private: boolean
+    name: string
+    cardsCount: number
+    created: string
+    updated: string
+}
 export type PacksResponseType = {
-    cardPacks: [
-        {
-            _id: string
-            user_id: string
-            name: string
-            cardsCount: number
-            created: Date
-            updated: Date
-        },
-    ]
-    cardPacksTotalCount: number
-    // количество колод
+    cardPacks: PackType[]
     maxCardsCount: number
     minCardsCount: number
-    page: number // выбранная страница
+
+    page: number
     pageCount: number
-    // количество элементов на странице
+    cardPacksTotalCount: number
+
 }
 export type NewPackType = {
     name: string
-    deckCover: string
-    private: boolean
+    deckCover?: string
+    private?: boolean
 }
 export type UpdatePackType = {
     _id: string;
@@ -64,9 +65,9 @@ export type CardsResponseType = {
     cards: [
         {
             answer: string
-            question:string
+            question: string
             cardsPack_id: string
-            grade:number
+            grade: number
             shots: number
             user_id: string
             created: Date
@@ -89,7 +90,7 @@ export type NewCardType = {
     shots: number
     answerImg: string
     questionImg: string
-    questionVideo:string
+    questionVideo: string
     answerVideo: string
 }
 export type UpdateCardType = {

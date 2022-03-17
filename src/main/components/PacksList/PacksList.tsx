@@ -4,8 +4,7 @@ import {Sidebar} from "./Sidebar/Sidebar";
 
 export const PacksList = () => {
 
-
-    return (
+       return (
         <div className={style.container}>
                 <Sidebar/>
                 <Table/>

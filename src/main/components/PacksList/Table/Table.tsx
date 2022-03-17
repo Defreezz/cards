@@ -2,26 +2,29 @@ import style from './table.module.scss'
 import {PacksSearch} from "./SearchPack";
 import {TableHeader} from "./TableHeader";
 import {TableItem} from "./TableItem";
+import {useSelector} from "react-redux";
+import {selectOperationStatus, selectPacks} from "../../../../store/selectors";
+import {Preloader} from "../../common/Preloader/Preloader";
+
 
 export const Table = () => {
-    const packs = [
-        {name: 'asd', card: 12, lactup: 'sdfsdfsd fs sdf sdfsd', cre: 'asd f asda asdas asasd '},
-        {name: 'sdf', card: 33, lactup: 'sdfsdfsdfsdfsd', cre: 'asd fas asasd '},
-        {name: 'sdfs', card: 22, lactup: 'sdfsdfsd fsdfsd', cre: 'asd fas asasd '},
-        {name: 'asd', card: 12, lactup: 'sdfsdfsdfsdfsd', cre: 'asd fas asasd '},
-        {name: 'sdfsdf', card: 44, lactup: 'sdfdfsgd sdfsdfsdfsd', cre: 'asd fas asasd '},
-        {name: 'assdfsdd', card: 12, lactup: 's', cre: 'asd fas asasd '},
-        {name: 'assdfsd', card: 12, lactup: 'sdfsdfsdfsdfsd', cre: 'asd fas asasd '},
-    ]
-    //const pack = useSelector(selectPacks);
+
+    const packs = useSelector(selectPacks)
+    const operationStatus = useSelector(selectOperationStatus)
 
     return (
         <div className={style.tableContainer}>
             <PacksSearch/>
             <TableHeader/>
-            <div className={style.itemsWrapper}>
-                {packs.map(p => <TableItem pack={p.card} cre={p.cre} name={p.name} lust={p.lactup}/>)}
-            </div>
+            {
+                operationStatus === 'loading'
+                    ? <Preloader height={'40px'} width={'40px'}/>
+
+                    : <div className={style.itemsWrapper}>
+                        {packs.map(p => <TableItem pack={p}/>)}
+                    </div>
+
+            }
             <div>
                 тут будет пагинация
             </div>

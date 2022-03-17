@@ -6,24 +6,28 @@ import {profileReducer} from "./reducers/profileReducer";
 import {ProfileReducersActionsType} from "./actions/profileReducerActions";
 import {appReducer} from "./reducers/appReducer";
 import {AppReducerActionsType} from "./actions/appReducerActions";
-import {packReducer} from "./reducers/packsReducer";
+import {packsReducer} from "./reducers/packsReducer";
+import {PacksReducerActionsType} from "./actions/packsReducerActions";
 
 export type AppStoreType = ReturnType<typeof rootReducers>;
 
 export type AllActionsType =
-  | ProfileReducersActionsType
-  | AppReducerActionsType
+    | ProfileReducersActionsType
+    | AppReducerActionsType
+    | PacksReducerActionsType
 
 
 export type ThunkType = ThunkAction<void, AppStoreType, unknown, AllActionsType>
 
 const rootReducers = combineReducers({
-  app:appReducer,
-  logIn: loginReducer,
-  registration: registrationReducer,
-  profile: profileReducer,
-  packs:packReducer
+    app: appReducer,
+    logIn: loginReducer,
+    registration: registrationReducer,
+    profile: profileReducer,
+    packs: packsReducer
 });
 export const store = createStore(rootReducers, applyMiddleware(thunk));
 
+//@ts-ignore
+window.store = store
 

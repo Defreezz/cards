@@ -2,19 +2,22 @@ import {memo, useEffect, useState} from 'react';
 import style from './table.module.scss';
 import {useTypedDispatch} from '../../../utils';
 import SuperInputText from '../../common/SuperInputText/SuperInputText';
+import {useSelector} from "react-redux";
+import {selectPacks, selectSearchPackName} from "../../../../store/selectors";
+import {setPackName} from "../../../../store/actions/packsReducerActions";
+import {useDebounce} from "../../../hooks/useDebounce";
 
 export const PacksSearch = memo(() => {
     const dispatch = useTypedDispatch();
-    const [inputValue, setInputValue] = useState("")
-    //const debounced = useDebounced(inputValue);
+    const packName = useSelector(selectSearchPackName)
+    const [inputValue, setInputValue] = useState(packName)
 
-    // useEffect(() => {
-    //     dispatch(inputChangeHandlerAC(debounced))
-    // }, [debounced]);
+    dispatch(setPackName(useDebounce(inputValue)))
 
     return (
-        <div className={style.searchContainer} >
+        <div className={style.searchContainer}>
             <SuperInputText
+                autoComplete={'off'}
                 className={style.searchInput}
                 value={inputValue}
                 onChangeText={setInputValue}
