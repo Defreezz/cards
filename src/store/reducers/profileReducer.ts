@@ -3,7 +3,7 @@ import {modifyProfile, PROFILE_ACTIONS, ProfileReducersActionsType} from "../act
 import {ThunkType} from "../store";
 import {ProfileResponseType} from "../../main/api/types";
 import {setErrorMessage, setIsLoggedIn, setOperationStatus} from "../actions/appReducerActions";
-import {usersAPI} from "../../main/api/api";
+import {userAPI} from "../../main/api/api";
 
 export type ProfileReducerType = ProfileResponseType // на тот случай, если в стейте будут лежать свойства отличные от бэка
 const initState: ProfileReducerType = {
@@ -35,7 +35,7 @@ export const updateProfile = (changes: Pick<ProfileResponseType, "name" | "avata
     async dispatch => {
         try {
             dispatch(setOperationStatus("loading"))
-            const response = await usersAPI.updateProfile(changes)
+            const response = await userAPI.updateProfile(changes)
             dispatch(modifyProfile(response.data.updatedUser))
         }
         catch (error){
@@ -48,7 +48,7 @@ export const updateProfile = (changes: Pick<ProfileResponseType, "name" | "avata
 
 export const logout = (): ThunkType => async dispatch => {
     try {
-        await usersAPI.logout()
+        await userAPI.logout()
         dispatch(setIsLoggedIn(false))
     } catch (e: any) {
         dispatch(setErrorMessage(e))

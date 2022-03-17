@@ -1,1 +1,1 @@
-export {useTypedDispatch} from './useTypedDispatch'
+export {useTypedDispatch} from '../hooks/useTypedDispatch'

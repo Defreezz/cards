@@ -17,7 +17,7 @@ export const RouterWithoutLogin = () => {
     return (
         <div>
             <Routes>
-                <Route path={"/"} element={<LogIn />} />
+                <Route path={"/*"} element={<LogIn />} />
                 <Route path={Path.LogIn} element={ <LogIn />} />
                 <Route path={Path.Registration} element={<Registration />} />
                 <Route path={Path.ResetPassword} element={<ResetPassword />} />
