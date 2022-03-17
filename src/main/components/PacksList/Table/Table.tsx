@@ -5,6 +5,7 @@ import {TableItem} from "./TableItem";
 import {useSelector} from "react-redux";
 import {selectOperationStatus, selectPacks} from "../../../../store/selectors";
 import {Preloader} from "../../common/Preloader/Preloader";
+import {Pagination} from "@mui/material";
 
 
 export const Table = () => {

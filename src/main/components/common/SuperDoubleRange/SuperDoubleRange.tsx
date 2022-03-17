@@ -39,6 +39,7 @@ const SuperDoubleRange: React.FC<SuperDoubleRangePropsType> = (
     }
     return (
         <>
+
             <Range
                 value={value}
                 onChange={onChangeCallback}
