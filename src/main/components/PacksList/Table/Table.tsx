@@ -6,12 +6,16 @@ import {useSelector} from "react-redux";
 import {selectOperationStatus, selectPacks} from "../../../../store/selectors";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {Pagination} from "@mui/material";
+import {InitStateType} from "../../../../store/reducers/packsReducer";
 
 
 export const Table = () => {
 
     const packs = useSelector(selectPacks)
     const operationStatus = useSelector(selectOperationStatus)
+
+    // const pageCount = useSelector((state:InitStateType)=> state.pageCount)
+
 
     return (
         <div className={style.tableContainer}>
