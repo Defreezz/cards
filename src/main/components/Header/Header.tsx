@@ -9,7 +9,7 @@ type NavbarItemType = {
 }
 const navbarItems: NavbarItemType[] = [
     {name: "Profile", path: Path.Profile},
-    {name: "Packs list", path: Path.PackList},
+    {name: "Packs list", path: Path.PacksList},
 ]
 
 const NavbarItem = ({path, name}: NavbarItemType) => {

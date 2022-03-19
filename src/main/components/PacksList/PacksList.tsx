@@ -1,5 +1,5 @@
 import style from './packList.module.scss'
-import {Table} from "./Table/Table";
+import {PacksTable} from "./PacksTable/PacksTable";
 import {Sidebar} from "./Sidebar/Sidebar";
 
 export const PacksList = () => {
@@ -7,7 +7,7 @@ export const PacksList = () => {
        return (
         <div className={style.container}>
                 <Sidebar/>
-                <Table/>
+                <PacksTable/>
         </div>
     )
 };

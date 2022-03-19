@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import {selectProfileData} from "../../../../store/selectors";
 import {logout} from "../../../../store/reducers/profileReducer";
 import {useTypedDispatch} from "../../../utils";
-import {Table} from "../../PacksList/Table/Table";
+import {PacksTable} from "../../PacksList/PacksTable/PacksTable";
 import {addPack} from "../../../../store/reducers/packsReducer";
 
 
@@ -39,28 +39,30 @@ export const ProfileInfo = memo(({
                 <div className={style.inner_info_top}>
                     <img alt={"avatar"} src={profile.avatar} className={style.ava}/>
                     <div className={style.name}>{profile.name}</div>
-                    <SuperButton
-                        onClick={handleChangeProfileEditingStatus}
-                    >
-                        Edit Profile
-                    </SuperButton>
+                    <div className={style.blockButtons}>
+                        <SuperButton
+                            onClick={handleChangeProfileEditingStatus}
+                        >
+                            Edit Profile
+                        </SuperButton>
+                        <SuperButton
+                            onClick={handleAddPackClick}
+                        >
+                            Add pack
+                        </SuperButton>
+                    </div>
                 </div>
                 <div className={style.inner_info_bottom}>
-                    <SuperButton
-                        onClick={handleAddPackClick}
-                    >
-                        add
-                    </SuperButton>
                     <div className={style.logout_button}>
                         <SuperButton
-                        onClick={handleLogoutClick}
-                    >
-                        Logout
-                    </SuperButton>
+                            onClick={handleLogoutClick}
+                        >
+                            Logout
+                        </SuperButton>
                     </div>
                 </div>
             </div>
-            <Table/>
+            <PacksTable/>
         </div>
     )
 })

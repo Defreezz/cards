@@ -1,4 +1,4 @@
-import style from './table.module.scss'
+import style from './packTable.module.scss'
 import {useTableSort} from "../../../hooks/useTableSort";
 import {useEffect} from "react";
 import {getPacks} from "../../../../store/reducers/packsReducer";
@@ -6,33 +6,12 @@ import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectSearchPackName, selectUserId} from "../../../../store/selectors";
+import {Path} from "../../Routes/Router";
 
-export const TableHeader = () => {
+export const CardsTableHeader = () => {
     const dispatch = useTypedDispatch()
 
-    const {
-        handleLastUpdateSort,
-        handleQuantitySort,
-        handleUserNameSort,
-        handleSortName,
-        lastUpdate,
-        quantitySort,
-        userNameSort,
-        itemNameSort
-    } = useTableSort()
 
-
-    const user_id = useSelector(selectUserId)
-    const packName = useSelector(selectSearchPackName)
-    const {pathname} = useLocation()
-
-    useEffect(() => {
-        if (pathname === '/pack-list') {
-            dispatch(getPacks({}))
-        }else{
-            dispatch(getPacks({user_id}))
-        }
-    }, [itemNameSort, userNameSort, quantitySort, lastUpdate,user_id,dispatch,pathname,packName])
 
     return (
         <div className={style.headerTableContainer}>
@@ -61,7 +40,7 @@ export const TableHeader = () => {
                 <div className={userNameSort === '0user_id' ? style.arrowDown : style.arrowUp}/>
             </div>
             <div
-                className={style.tableItemButton}>Actions
+                className={style.tableHeaderButton}>Actions
             </div>
         </div>
     )

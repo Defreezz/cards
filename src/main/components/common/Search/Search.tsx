@@ -1,18 +1,27 @@
 import {memo, useEffect, useState} from 'react';
-import style from './table.module.scss';
+import style from './search.module.scss';
 import {useTypedDispatch} from '../../../utils';
-import SuperInputText from '../../common/SuperInputText/SuperInputText';
+import SuperInputText from '../SuperInputText/SuperInputText';
 import {setPackName} from "../../../../store/actions/packsReducerActions";
 import {useDebounce} from "../../../hooks/useDebounce";
+import {Path} from "../../../enum";
 
-export const PacksSearch = memo(() => {
+type SearchType = {
+    location: '/packs-list'|'/cards-list',
+}
+
+
+export const Search = memo(({location}: SearchType) => {
     const dispatch = useTypedDispatch();
     const [inputValue, setInputValue] = useState('')
     const value = useDebounce(inputValue)
 
     useEffect(() => {
-        dispatch(setPackName(value))
-    }, [value])
+        if (location === Path.Packs)
+            dispatch(setPackName(value))
+        //else
+            //dispatch(setCardName(value))
+    }, [dispatch,location, value])
 
 
     return (

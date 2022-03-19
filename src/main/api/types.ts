@@ -61,20 +61,19 @@ export type QueryCardsParamsType = {
     sortCards: string
     pageCount: number
 }
+export type CardsType = {
+    answer: string
+    question: string
+    cardsPack_id: string
+    grade: number
+    shots: number
+    user_id: string
+    created: string
+    updated: string
+    _id: string
+}
 export type CardsResponseType = {
-    cards: [
-        {
-            answer: string
-            question: string
-            cardsPack_id: string
-            grade: number
-            shots: number
-            user_id: string
-            created: Date
-            updated: Date
-            _id: string
-        },
-    ]
+    cards: CardsType[]
     cardsTotalCount: number
     maxGrade: number
     minGrade: number

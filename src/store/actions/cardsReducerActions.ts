@@ -15,5 +15,5 @@ type SetCards = {
 }
 
 
-export const setPack = (cards: CardsResponseType): SetCards =>
+export const setCards = (cards: CardsResponseType): SetCards =>
     ({type: CARD_ACTIONS.SET_CARDS, payload: cards})
