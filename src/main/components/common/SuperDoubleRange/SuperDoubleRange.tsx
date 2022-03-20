@@ -6,12 +6,16 @@ import 'rc-slider/assets/index.css';
 type SuperDoubleRangePropsType = {
     onChangeRange?: (value: number[]) => void
     value: number[]
+    min : number
+    max : number //
 }
 
 const SuperDoubleRange: React.FC<SuperDoubleRangePropsType> = (
     {
         onChangeRange,
         value,
+        min,
+        max
     }
 ) => {
     const onChangeCallback = (newValue: number | number[]) => {
@@ -46,6 +50,8 @@ const SuperDoubleRange: React.FC<SuperDoubleRangePropsType> = (
                 trackStyle={[track]}
                 handleStyle={[handles,handles]}
                 railStyle={rail}
+                min={min}
+                max={max}
             />
         </>
     );

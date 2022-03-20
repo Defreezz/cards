@@ -28,7 +28,7 @@ export const setPackName = (packName: string) =>
     ({type: PACK_ACTIONS.SET_PACK_NAME, payload: {packName}} as const)
 
 export const setRangeCards = (values: number[]) =>
-    ({type: PACK_ACTIONS.SET_RANGE_CARDS, payload: {minCardsCount : values[0], maxCardsCount : values[1]}} as const)
+    ({type: PACK_ACTIONS.SET_RANGE_CARDS, payload: {min : values[0], max : values[1]}} as const)
 
 
 
