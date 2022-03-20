@@ -17,7 +17,7 @@ export const Sidebar = () => {
 
     const [rangeValues, setRangeValues] = useState([minCardsCount, maxCardsCount])
 
-    const debouncedRange = useMemo(() => debounce( values => dispatch(setRangeCards(values)), 1000), [dispatch])
+    const debouncedRange = useMemo(() => debounce( values => dispatch(setRangeCards(values)), 500), [dispatch])
 
     const onChangeRangeCards = (values: number[]) => {
         setRangeValues(values)

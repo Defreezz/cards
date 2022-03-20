@@ -16,6 +16,8 @@ import {useEffect} from "react";
 import {Path} from "../../Routes/Router";
 import {getPacks} from "../../../../store/reducers/packsReducer";
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
+import {selectMinPacksReducer} from "../../../../store/selectors/selectMinPacksReducer";
+import { selectMaxPacksReducer } from '../../../../store/selectors/selectMaxPacksReducer';
 
 
 export const PacksTable = () => {
@@ -26,6 +28,8 @@ export const PacksTable = () => {
     const user_id = useSelector(selectUserId)
     const packName = useSelector(selectSearchPackName)
     const sortPacks = useSelector(selectSortPacks)
+    const min = useSelector(selectMinPacksReducer)
+    const max = useSelector(selectMaxPacksReducer)
 
     const {pathname} = useLocation()
 
@@ -35,7 +39,7 @@ export const PacksTable = () => {
         }else{
             dispatch(getPacks({user_id}))
         }
-    }, [sortPacks,user_id,dispatch,pathname,packName])
+    }, [sortPacks,user_id,dispatch,pathname,packName, min, max])
 
 
     return (
