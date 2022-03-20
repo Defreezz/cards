@@ -71,6 +71,7 @@
     }
   }
 
+
   .itemsWrapper{
     width: 90%;
     height: 75%;
@@ -103,4 +104,8 @@
       }
     }
   }
+}
+
+.selectedPage {
+  font-weight: bold;
 }

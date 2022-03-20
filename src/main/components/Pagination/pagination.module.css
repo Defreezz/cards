@@ -1,0 +1,4 @@
+.selectedPage {
+    border: 2px solid gray;
+    font-weight: bold;
+}

@@ -29,6 +29,7 @@ export const packReducer = (state = initState, action: CardsReducerActionsType):
                 ...state,
                 ...action.payload
             }
+
         default:
             return state;
     }

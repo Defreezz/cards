@@ -21,7 +21,7 @@ const initState: InitStateType = {
     cardPacksTotalCount: 0,
     maxCardsCount: 0,
     minCardsCount: 0,
-    page: 0,
+    page: 1,
     pageCount: 10,
     min: 0,
     max: 0,
@@ -39,6 +39,8 @@ export const packsReducer = (state = initState, action: PacksReducerActionsType)
                 ...state,
                 ...action.payload
             }
+        case PACK_ACTIONS.SET_CURRENT_PAGE:
+            return {...state, ...action.payload}
         default:
             return state;
     }
@@ -87,3 +89,4 @@ export const deletePack = (id: string): ThunkType => async (dispatch, getState) 
 
     }
 }
+
