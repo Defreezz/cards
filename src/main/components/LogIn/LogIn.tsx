@@ -52,6 +52,7 @@ export const LogIn = () => {
             </div>
             <div>
                 <SuperInputText
+
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     onFocus={onFocusEmailAndPasswordInput}
