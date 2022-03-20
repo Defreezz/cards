@@ -39,6 +39,11 @@ export const packsReducer = (state = initState, action: PacksReducerActionsType)
                 ...state,
                 ...action.payload
             }
+        case PACK_ACTIONS.SET_RANGE_CARDS:
+            return {
+                ...state,
+                ...action.payload
+            }
         default:
             return state;
     }

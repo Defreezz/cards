@@ -5,6 +5,7 @@ export enum PACK_ACTIONS {
     SET_PACKS = 'Packs/SET-PACKS',
     SET_SORT_PUCKS = 'Packs/SET-SORT-PACKS',
     SET_PACK_NAME = 'Packs/SET-PACK-NAME',
+    SET_RANGE_CARDS = 'Packs/SET-RANGE-CARDS',
 }
 
 export type PacksReducerActionsType =
@@ -12,18 +13,22 @@ export type PacksReducerActionsType =
     | ReturnType<typeof setSortPacks>
     | ReturnType<typeof setItemNameSort>
     | ReturnType<typeof setPackName>
+    | ReturnType<typeof setRangeCards>
 
 export const setPacks = (packs: PacksResponseType) =>
-    ({type: PACK_ACTIONS.SET_PACKS, payload: packs} )
+    ({type: PACK_ACTIONS.SET_PACKS, payload: packs})
 
-export const setItemNameSort = (itemNameSort:'0name' | '1name') =>
+export const setItemNameSort = (itemNameSort: '0name' | '1name') =>
     ({type: PACK_ACTIONS.SET_SORT_PUCKS, payload: {sort: {itemNameSort}}} as const)
 
-export const setSortPacks = (sortPacks:string) =>
+export const setSortPacks = (sortPacks: string) =>
     ({type: PACK_ACTIONS.SET_SORT_PUCKS, payload: {sortPacks}} as const)
 
-export const setPackName = (packName:string) =>
+export const setPackName = (packName: string) =>
     ({type: PACK_ACTIONS.SET_PACK_NAME, payload: {packName}} as const)
+
+export const setRangeCards = (values: number[]) =>
+    ({type: PACK_ACTIONS.SET_RANGE_CARDS, payload: {minCardsCount : values[0], maxCardsCount : values[1]}} as const)
 
 
 
