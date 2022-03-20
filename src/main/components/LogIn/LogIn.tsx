@@ -34,7 +34,7 @@ export const LogIn = () => {
 
     useEffect(() => {
         dispatch(setErrorMessage(""))
-    }, [])
+    }, [dispatch])
 
 
     if (operationStatus === 'loading') {

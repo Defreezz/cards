@@ -1,10 +1,6 @@
 import {Dispatch} from "redux";
 import {registrationAPI} from "../../main/api/api";
 
-
-type InitStateType = typeof initState;
-
-
 export type RegistrationStateType = {}
 
 const initState:RegistrationStateType = {};

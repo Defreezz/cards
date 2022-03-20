@@ -3,7 +3,6 @@ import SuperButton from "../../common/SuperButton/SuperButton";
 import {memo, useCallback} from "react";
 import {useSelector} from "react-redux";
 import {selectProfileData} from "../../../../store/selectors";
-import {logout} from "../../../../store/reducers/profileReducer";
 import {useTypedDispatch} from "../../../utils";
 import {PacksTable} from "../../PacksList/PacksTable/PacksTable";
 import {addPack} from "../../../../store/reducers/packsReducer";
