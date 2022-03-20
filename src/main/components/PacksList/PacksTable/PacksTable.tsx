@@ -3,13 +3,40 @@ import {Search} from "../../common/Search/Search";
 import {PackTableHeader} from "./PackTableHeader";
 import {TableItem} from "../../common/TableItem/TableItem";
 import {useSelector} from "react-redux";
-import {selectOperationStatus, selectPacks} from "../../../../store/selectors";
+import {
+    selectOperationStatus,
+    selectPacks,
+    selectSearchPackName,
+    selectSortPacks,
+    selectUserId
+} from "../../../../store/selectors";
 import {Box, LinearProgress, Pagination} from "@mui/material";
+import {useLocation} from "react-router-dom";
+import {useEffect} from "react";
+import {Path} from "../../Routes/Router";
+import {getPacks} from "../../../../store/reducers/packsReducer";
+import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 
 
 export const PacksTable = () => {
+    const dispatch = useTypedDispatch()
+
     const packs = useSelector(selectPacks)
     const operationStatus = useSelector(selectOperationStatus)
+    const user_id = useSelector(selectUserId)
+    const packName = useSelector(selectSearchPackName)
+    const sortPacks = useSelector(selectSortPacks)
+
+    const {pathname} = useLocation()
+
+    useEffect(() => {
+        if (pathname === Path.PacksList) {
+            dispatch(getPacks({}))
+        }else{
+            dispatch(getPacks({user_id}))
+        }
+    }, [sortPacks,user_id,dispatch,pathname,packName])
+
 
     return (
         <div className={style.tableContainer}>

@@ -1,65 +1,55 @@
 import style from './packTable.module.scss'
-import {useTableSort} from "../../../hooks/useTableSort";
-import {useEffect} from "react";
-import {getPacks} from "../../../../store/reducers/packsReducer";
-import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
-import {useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {selectSearchPackName, selectUserId} from "../../../../store/selectors";
-import {Path} from "../../Routes/Router";
+import {selectSortPacks} from "../../../../store/selectors";
+import {setSortPacks} from "../../../../store/actions/packsReducerActions";
+import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
+import {Sort} from "../../../enum";
+import {useCallback} from "react";
 
 export const PackTableHeader = () => {
     const dispatch = useTypedDispatch()
+    const sortPacks = useSelector(selectSortPacks)
 
-    const {
-        handleLastUpdateSort,
-        handleQuantitySort,
-        handleUserNameSort,
-        handleSortName,
-        lastUpdate,
-        quantitySort,
-        userNameSort,
-        itemNameSort
-    } = useTableSort()
+    const classSortName = useCallback ((fieldName: string) => {
+        if (sortPacks === `0${fieldName}`)
+            return style.arrowUp
+        else if (sortPacks === `1${fieldName}`)
+            return style.arrowDown
+        else return ''
+    },[sortPacks])
 
+    const handleSort = useCallback((fieldName: string) => () => {
+        if (sortPacks !== `1${fieldName}`)
+            dispatch(setSortPacks(`1${fieldName}`))
+        else
+            dispatch(setSortPacks(`0${fieldName}`))
 
-    const user_id = useSelector(selectUserId)
-    const packName = useSelector(selectSearchPackName)
-    const {pathname} = useLocation()
-
-    useEffect(() => {
-        if (pathname === Path.PacksList) {
-            dispatch(getPacks({}))
-        }else{
-            dispatch(getPacks({user_id}))
-        }
-    }, [itemNameSort, userNameSort, quantitySort, lastUpdate,user_id,dispatch,pathname,packName])
-
+    },[dispatch,sortPacks])
     return (
         <div className={style.headerTableContainer}>
-            <div onClick={handleSortName}
+            <div onClick={handleSort(Sort.name)}
                  className={style.tableHeaderItem}>
                 Name
-                <div className={itemNameSort === '0name' ? style.arrowDown : style.arrowUp}/>
+                <div className={classSortName(Sort.name)}/>
             </div>
-            <div onClick={handleQuantitySort}
+            <div onClick={handleSort(Sort.cardsCount)}
                  className={style.tableHeaderItem}>
                 Cards
-                <div className={quantitySort === '0cardsCount' ? style.arrowDown : style.arrowUp}/>
+                <div className={classSortName(Sort.cardsCount)}/>
             </div>
             <div
-                onClick={handleLastUpdateSort}
+                onClick={handleSort(Sort.lastUpdated)}
                 className={style.tableHeaderItem}
             >
                 Last Updated
-                <div className={lastUpdate === '0updated' ? style.arrowDown : style.arrowUp}/>
+                <div className={classSortName(Sort.lastUpdated)}/>
             </div>
             <div
-                onClick={handleUserNameSort}
+                onClick={handleSort(Sort.id)}
                 className={style.tableHeaderItem}
             >
                 Created By
-                <div className={userNameSort === '0user_id' ? style.arrowDown : style.arrowUp}/>
+                <div className={classSortName(Sort.id)}/>
             </div>
             <div
                 className={style.tableHeaderButton}>Actions

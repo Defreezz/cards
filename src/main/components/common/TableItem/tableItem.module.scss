@@ -10,7 +10,6 @@
   .tableItem {
     color: white;
     word-break: break-all;
-
   }
 
   .tableItemButton {
@@ -36,13 +35,17 @@
     color: white;
     cursor: pointer;
     margin-left: 10px;
-    @media screen and (max-width: 900px) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  @media screen and (max-width: 900px) {
       word-break: break-all;
       text-align: center;
 
       overflow: hidden;
     }
-    &:hover{
+
+    &:hover {
+      overflow: visible;
       font-weight: bold;
     }
   }

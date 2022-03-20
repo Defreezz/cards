@@ -9,7 +9,7 @@ export const Sidebar = () => {
         <div className={style.sidebar}>
             <div className={style.doubleRange}>
                 <span>Show number of cards</span>
-                <SuperDoubleRange value={[13,15]}/>
+                <SuperDoubleRange value={[13,111]}/>
             </div>
         </div>
 

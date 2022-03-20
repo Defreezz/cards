@@ -17,17 +17,12 @@ export const ProfileInfo = memo(({
                                      changeProfileEditingStatus,
                                  }: ProfileInfoType) => {
 
-
     const dispatch = useTypedDispatch()
     const profile = useSelector(selectProfileData)
 
     const handleChangeProfileEditingStatus = useCallback(() => {
         changeProfileEditingStatus(true)
     }, [changeProfileEditingStatus])
-
-    const handleLogoutClick = useCallback(() => {
-        dispatch(logout())
-    }, [dispatch])
 
     const handleAddPackClick = useCallback(() => {
         dispatch(addPack())
@@ -53,13 +48,7 @@ export const ProfileInfo = memo(({
                     </div>
                 </div>
                 <div className={style.inner_info_bottom}>
-                    <div className={style.logout_button}>
-                        <SuperButton
-                            onClick={handleLogoutClick}
-                        >
-                            Logout
-                        </SuperButton>
-                    </div>
+
                 </div>
             </div>
             <PacksTable/>

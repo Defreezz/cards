@@ -58,7 +58,13 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
                 <div className={style.tableItem}>{card?.question}</div>
                 <div className={style.tableItem}>{card?.answer}</div>
                 <div className={style.tableItem}>{card?.updated.slice(0, 10)}</div>
-                <div className={style.tableItem}> <Rating name="read-only" size={'small'} value={card?.grade} readOnly /></div>
+                <div className={style.tableItem}>
+                    <Rating
+                        name="read-only"
+                        size={'small'}
+                        value={card?.grade}
+                        readOnly />
+                </div>
             </div>
     )
 })
