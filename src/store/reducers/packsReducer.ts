@@ -35,15 +35,7 @@ export const packsReducer = (state = initState, action: PacksReducerActionsType)
         case PACK_ACTIONS.SET_PACKS:
         case PACK_ACTIONS.SET_SORT_PUCKS:
         case PACK_ACTIONS.SET_PACK_NAME:
-            return {
-                ...state,
-                ...action.payload
-            }
         case PACK_ACTIONS.SET_RANGE_CARDS:
-            return {
-                ...state,
-                ...action.payload
-            }
         case PACK_ACTIONS.SET_PAGE_OF_PACKS:
             return {
                 ...state,
