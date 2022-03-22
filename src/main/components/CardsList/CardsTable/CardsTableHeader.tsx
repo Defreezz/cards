@@ -1,43 +1,63 @@
 import style from './cardsTable.module.scss'
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
+import {useCallback} from "react";
+import {setSortPacks} from "../../../../store/actions/packsReducerActions";
+import {useSelector} from "react-redux";
+import {selectSortCards, selectSortPacks} from "../../../../store/selectors";
+import {setSortCards} from "../../../../store/actions/cardsReducerActions";
 
 export const CardsTableHeader = () => {
     const dispatch = useTypedDispatch()
+    const sortCards = useSelector(selectSortCards)
 
+    const handleSort = useCallback((fieldName: string) => () => {
+        if (sortCards !== `1${fieldName}`)
+            dispatch(setSortCards(`1${fieldName}`))
+        else
+            dispatch(setSortCards(`0${fieldName}`))
 
+    },[dispatch,sortCards])
+
+    const classSortName = useCallback ((fieldName: string) => {
+        if (sortCards === `0${fieldName}`)
+            return style.arrowUp
+        else if (sortCards === `1${fieldName}`)
+            return style.arrowDown
+        else return ''
+    },[sortCards])
 
     return (
         <div className={style.headerTableContainer}>
-            <div //onClick={handleSortName}
+            <div onClick={handleSort('question')}
                  className={style.tableHeaderItem}>
                 Question
                 <div
-                    //className={itemNameSort === '0name' ? style.arrowDown : style.arrowUp}
+                    className={classSortName('question')}
                 />
             </div>
-            <div //onClick={handleQuantitySort}
+            <div onClick={handleSort('answer')}
                  className={style.tableHeaderItem}>
                 Answer
                 <div
-                    //className={quantitySort === '0cardsCount' ? style.arrowDown : style.arrowUp}
+                    className={classSortName('answer')}
                 />
             </div>
             <div
-                //onClick={handleLastUpdateSort}
+                onClick={handleSort('updated')}
                 className={style.tableHeaderItem}
             >
                 Last Updated
                 <div
-                    //className={lastUpdate === '0updated' ? style.arrowDown : style.arrowUp}
+                     className={classSortName('updated')}
                 />
             </div>
             <div
-                //onClick={handleUserNameSort}
+                onClick={handleSort('grade')}
                 className={style.tableHeaderItem}
             >
                 Rating
                 <div
-                    //className={userNameSort === '0user_id' ? style.arrowDown : style.arrowUp}
+                    className={classSortName('grade')}
                 />
             </div>
         </div>

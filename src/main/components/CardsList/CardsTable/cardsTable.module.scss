@@ -26,9 +26,9 @@
     align-items: center;
     grid-gap: 0 30px;
     display: grid;
-    grid-template-columns: 0.5fr 1fr 0.1fr 0.5fr;
+    grid-template-columns: 0.5fr 1fr 0.2fr 0.5fr;
     @media screen and (max-width: 600px) {
-      grid-template-columns:0.2fr 0.5fr 0.1fr 0.2fr;
+      grid-template-columns:0.2fr 0.5fr 0.2fr 0.2fr;
     }
     .tableHeaderItem {
       display: flex;

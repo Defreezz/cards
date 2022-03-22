@@ -5,7 +5,7 @@ import {
     selectCardsPage,
     selectCardsPageCount,
     selectCardsTotalCount,
-    selectOperationStatus
+    selectOperationStatus, selectSortCards
 } from "../../../../store/selectors";
 import {Box, CircularProgress, Pagination, Stack} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
@@ -21,10 +21,13 @@ import {CardsTableHeader} from "./CardsTableHeader";
 
 export const CardsTable = () => {
     const dispatch = useTypedDispatch()
+
     const {cardsPack_id} = useParams<{ cardsPack_id: string }>();
-    const cards = useSelector(selectCards)
-    const operationStatus = useSelector(selectOperationStatus)
     const navigateToPacksList = useNavigate()
+
+    const operationStatus = useSelector(selectOperationStatus)
+    const cards = useSelector(selectCards)
+    const sortCards = useSelector(selectSortCards)
 
     const page = useSelector(selectCardsPage)
     const cardsTotalCount = useSelector(selectCardsTotalCount)
@@ -44,8 +47,7 @@ export const CardsTable = () => {
     }, [])
     useLayoutEffect(() => {
         dispatch(getCards({cardsPack_id}))
-    }, [dispatch, cardsPack_id, page])
-
+    }, [dispatch, cardsPack_id, page,sortCards])
 
     return (
         <div className={style.tableContainer}>
