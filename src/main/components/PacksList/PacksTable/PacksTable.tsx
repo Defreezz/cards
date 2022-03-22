@@ -10,7 +10,7 @@ import {
     selectSortPacks,
     selectUserId
 } from "../../../../store/selectors";
-import {Box, LinearProgress, Pagination, Stack} from "@mui/material";
+import {CircularProgress, Pagination, Stack} from "@mui/material";
 import {useLocation} from "react-router-dom";
 import {ChangeEvent, useEffect} from "react";
 import {Path} from "../../Routes/Router";
@@ -48,7 +48,7 @@ export const PacksTable = () => {
 
     useEffect(() => {
         if (pathname === Path.PacksList) {
-            dispatch(getPacks({}))
+            dispatch(getPacks())
         } else {
             dispatch(getPacks({user_id}))
         }
@@ -57,27 +57,31 @@ export const PacksTable = () => {
 
     return (
         <div className={style.tableContainer}>
-            <Search location={"/packs-list"}/>
-            <PackTableHeader/>
             {
                 operationStatus === 'loading'
-                    ? <Box sx={{width: '90%', color: 'grey.500'}}>
-                        <LinearProgress color={'inherit'}/>
-                    </Box>
-
-                    : <div className={style.itemsWrapper}>
-                        {packs.map(p => <TableItem key={p._id} pack={p}/>)}
+                    ? <div className={style.progress}>
+                        <CircularProgress/>
                     </div>
 
+                    : <>
+                        <Search location={"/packs-list"}/>
+                        <PackTableHeader/>
+                        <div className={style.itemsWrapper}>
+                            {packs.map(p => <TableItem key={p._id} pack={p}/>)}
+                        </div>
+                    </>
+
             }
-            <Stack spacing={2}>
-                <Pagination count={count}
-                            variant="outlined"
-                            shape="rounded"
-                            page={page}
-                            onChange={handleChange}
+            <Stack spacing={2} sx={{marginBottom: '10px'}}>
+                <Pagination
+                    count={count}
+                    variant="outlined"
+                    shape="rounded"
+                    page={page}
+                    onChange={handleChange}
                 />
             </Stack>
+
         </div>
     )
 }

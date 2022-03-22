@@ -7,6 +7,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  .progress{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
 
   .headerTableContainer {
     width: 90%;

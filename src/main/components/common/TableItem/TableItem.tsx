@@ -22,12 +22,13 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
         pack && dispatch(deletePack(pack._id))
     }, [dispatch, pack])
 
-    const handleNameClick =useCallback( () => {
+    const handleNameClick = useCallback(() => {
         navigate(`/cards-list/${pack?._id}`)
-    },[navigate,pack])
-    return (
-        pack
-            ? <div className={style.itemsPacksBlock}>
+    }, [navigate, pack])
+
+    if (pack) {
+        return (
+            <div className={style.itemsPacksBlock}>
                 <div className={style.tableItemName} onClick={handleNameClick}>{pack.name}</div>
                 <div className={style.tableItem}>{pack.cardsCount}</div>
                 <div className={style.tableItem}>{pack?.updated.slice(0, 10)}</div>
@@ -53,8 +54,11 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
                         Learn
                     </SuperButton>
                 </div>
-            </div>
-            : <div className={style.itemsCardsBlock}>
+            </div>)
+    }
+    if (card) {
+        return (
+            <div className={style.itemsCardsBlock}>
                 <div className={style.tableItem}>{card?.question}</div>
                 <div className={style.tableItem}>{card?.answer}</div>
                 <div className={style.tableItem}>{card?.updated.slice(0, 10)}</div>
@@ -63,8 +67,12 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
                         name="read-only"
                         size={'small'}
                         value={card?.grade}
-                        readOnly />
+                        readOnly/>
                 </div>
             </div>
+        )
+    }
+    return (
+        <div>'null'</div>
     )
 })

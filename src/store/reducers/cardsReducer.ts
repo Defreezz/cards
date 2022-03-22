@@ -5,7 +5,7 @@ import {setOperationStatus} from "../actions/appReducerActions";
 import {cardsApi} from "../../main/api/api";
 
 
-const initState: CardsResponseType = {
+export const initState: CardsResponseType = {
     cards: [{
         _id: '',
         user_id: '',
@@ -21,13 +21,14 @@ const initState: CardsResponseType = {
     maxGrade: 0,
     minGrade: 0,
     packUserId: '',
-    page: 0,
-    pageCount: 20,
+    page: 1,
+    pageCount: 10,
 }
 
 export const cardsReducer = (state = initState, action: CardsReducerActionsType): CardsResponseType => {
     switch (action.type) {
         case CARD_ACTIONS.SET_CARDS:
+        case CARD_ACTIONS.SET_PAGE_OF_CARDS:
             return {
                 ...state,
                 ...action.payload
@@ -38,11 +39,12 @@ export const cardsReducer = (state = initState, action: CardsReducerActionsType)
 };
 
 export const getCards = (queryParams: Partial<QueryCardsParamsType>): ThunkType => async (dispatch, getState) => {
-    const {pageCount} = getState().cards
+    const {pageCount,page} = getState().cards
     try {
         dispatch(setOperationStatus('loading'))
         const response = await cardsApi.getCards({
             pageCount,
+            page,
             ...queryParams
         })
         dispatch(setCards(response.data))

@@ -6,7 +6,7 @@ import {setOperationStatus} from "../actions/appReducerActions";
 
 export type InitStateType = PacksResponseType & QueryPackParamsType
 
-const initState: InitStateType = {
+export const initState: InitStateType = {
     cardPacks: [{
         _id: '',
         cardsCount: 0,
@@ -46,7 +46,7 @@ export const packsReducer = (state = initState, action: PacksReducerActionsType)
     }
 };
 
-export const getPacks = (queryParams: Partial<QueryPackParamsType>): ThunkType => async (dispatch, getState) => {
+export const getPacks = (queryParams?: Partial<QueryPackParamsType>): ThunkType => async (dispatch, getState) => {
     const {packName, sortPacks, page, pageCount, max, min, user_id} = getState().packs
     try {
         dispatch(setOperationStatus('loading'))
@@ -57,7 +57,8 @@ export const getPacks = (queryParams: Partial<QueryPackParamsType>): ThunkType =
             pageCount,
             max,
             min,
-            user_id, ...queryParams
+            user_id,
+            ...queryParams
         })
         dispatch(setPacks(response.data))
         dispatch(setOperationStatus('completed'))

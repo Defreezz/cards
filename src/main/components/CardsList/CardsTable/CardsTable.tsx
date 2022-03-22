@@ -1,15 +1,22 @@
 import style from './cardsTable.module.scss'
 import {Search} from "../../common/Search/Search";
 import {useSelector} from "react-redux";
-import {selectOperationStatus} from "../../../../store/selectors";
-import {Box, CircularProgress, Pagination} from "@mui/material";
+import {
+    selectCardsPage,
+    selectCardsPageCount,
+    selectCardsTotalCount,
+    selectOperationStatus
+} from "../../../../store/selectors";
+import {Box, CircularProgress, Pagination, Stack} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import {TableItem} from "../../common/TableItem/TableItem";
-import {useLayoutEffect} from "react";
-import {getCards} from "../../../../store/reducers/cardsReducer";
+import {ChangeEvent, useEffect, useLayoutEffect} from "react";
+import {getCards, initState} from "../../../../store/reducers/cardsReducer";
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {selectCards} from "../../../../store/selectors/selectCards";
 import {ArrowBack} from "@mui/icons-material";
+import {setCards, setPageOfCards} from "../../../../store/actions/cardsReducerActions";
+import {CardsTableHeader} from "./CardsTableHeader";
 
 
 export const CardsTable = () => {
@@ -19,13 +26,26 @@ export const CardsTable = () => {
     const operationStatus = useSelector(selectOperationStatus)
     const navigateToPacksList = useNavigate()
 
+    const page = useSelector(selectCardsPage)
+    const cardsTotalCount = useSelector(selectCardsTotalCount)
+    const pageCount = useSelector(selectCardsPageCount)
+    const count = Math.ceil(cardsTotalCount / pageCount)
+
+    const handleChange = (event: ChangeEvent<unknown>, value: number) => {
+        dispatch(setPageOfCards(value))
+    };
+
     const handleBackArrowClick = () => {
         navigateToPacksList('/packs-list')
     }
 
+    useEffect(() => {
+        return () => dispatch(setCards(initState))
+    }, [])
     useLayoutEffect(() => {
         dispatch(getCards({cardsPack_id}))
-    }, [dispatch, cardsPack_id])
+    }, [dispatch, cardsPack_id, page])
+
 
     return (
         <div className={style.tableContainer}>
@@ -46,13 +66,22 @@ export const CardsTable = () => {
 
                     : <>
                         <Search location={"/cards-list"}/>
+                        <CardsTableHeader/>
                         <div className={style.itemsWrapper}>
                             {cards.map(c => <TableItem key={c._id} card={c}/>)}
                         </div>
                     </>
             }
             <div>
-                <Pagination count={10} variant="outlined" shape="rounded"/>
+                <Stack spacing={2}>
+                    <Pagination
+                        count={count}
+                        variant="outlined"
+                        shape="rounded"
+                        page={page}
+                        onChange={handleChange}
+                    />
+                </Stack>
             </div>
         </div>
     )

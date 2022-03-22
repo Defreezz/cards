@@ -60,6 +60,7 @@ export type QueryCardsParamsType = {
     max: number
     sortCards: string
     pageCount: number
+    page:number
 }
 export type CardsType = {
     answer: string

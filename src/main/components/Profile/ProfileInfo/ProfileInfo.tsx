@@ -32,7 +32,7 @@ export const ProfileInfo = memo(({
             <div className={style.info_block}>
                 <div className={style.inner_info_top}>
                     <img alt={"avatar"} src={profile.avatar} className={style.ava}/>
-                    <div className={style.name}>{profile.name}</div>
+                    <div className={style.name}>Name: {profile.name}</div>
                     <div className={style.blockButtons}>
                         <SuperButton
                             onClick={handleChangeProfileEditingStatus}

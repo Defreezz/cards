@@ -1,4 +1,4 @@
-import style from './packTable.module.scss'
+import style from './cardsTable.module.scss'
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 
 export const CardsTableHeader = () => {
@@ -10,14 +10,14 @@ export const CardsTableHeader = () => {
         <div className={style.headerTableContainer}>
             <div //onClick={handleSortName}
                  className={style.tableHeaderItem}>
-                Name
+                Question
                 <div
                     //className={itemNameSort === '0name' ? style.arrowDown : style.arrowUp}
                 />
             </div>
             <div //onClick={handleQuantitySort}
                  className={style.tableHeaderItem}>
-                Cards
+                Answer
                 <div
                     //className={quantitySort === '0cardsCount' ? style.arrowDown : style.arrowUp}
                 />
@@ -35,13 +35,10 @@ export const CardsTableHeader = () => {
                 //onClick={handleUserNameSort}
                 className={style.tableHeaderItem}
             >
-                Created By
+                Rating
                 <div
                     //className={userNameSort === '0user_id' ? style.arrowDown : style.arrowUp}
                 />
-            </div>
-            <div
-                className={style.tableHeaderButton}>Actions
             </div>
         </div>
     )
