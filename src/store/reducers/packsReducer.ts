@@ -21,7 +21,7 @@ const initState: InitStateType = {
     cardPacksTotalCount: 0,
     maxCardsCount: 0,
     minCardsCount: 0,
-    page: 0,
+    page: 1,
     pageCount: 10,
     min: 0,
     max: 0,
@@ -40,6 +40,11 @@ export const packsReducer = (state = initState, action: PacksReducerActionsType)
                 ...action.payload
             }
         case PACK_ACTIONS.SET_RANGE_CARDS:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case PACK_ACTIONS.SET_PAGE_OF_PACKS:
             return {
                 ...state,
                 ...action.payload

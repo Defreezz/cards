@@ -10,14 +10,18 @@ import {
     selectSortPacks,
     selectUserId
 } from "../../../../store/selectors";
-import {Box, LinearProgress, Pagination} from "@mui/material";
+import {Box, LinearProgress, Pagination, Stack} from "@mui/material";
 import {useLocation} from "react-router-dom";
-import {useEffect} from "react";
+import {ChangeEvent, useEffect} from "react";
 import {Path} from "../../Routes/Router";
 import {getPacks} from "../../../../store/reducers/packsReducer";
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {selectMinPacksReducer} from "../../../../store/selectors/selectMinPacksReducer";
-import { selectMaxPacksReducer } from '../../../../store/selectors/selectMaxPacksReducer';
+import {selectMaxPacksReducer} from '../../../../store/selectors/selectMaxPacksReducer';
+import {selectPagePacksReducer} from "../../../../store/selectors/selectPagePacksReducer";
+import {setPageOfPacks} from "../../../../store/actions/packsReducerActions";
+import {selectCardPacksTotalCountPacksReducer} from '../../../../store/selectors/selectCardPacksTotalCountPacksReducer';
+import {selectPageCountPacksReducer} from "../../../../store/selectors/selectPageCountPacksReducer";
 
 
 export const PacksTable = () => {
@@ -30,16 +34,25 @@ export const PacksTable = () => {
     const sortPacks = useSelector(selectSortPacks)
     const min = useSelector(selectMinPacksReducer)
     const max = useSelector(selectMaxPacksReducer)
+    const page = useSelector(selectPagePacksReducer)
+    const cardPacksTotalCount = useSelector(selectCardPacksTotalCountPacksReducer)
+    const pageCount = useSelector(selectPageCountPacksReducer)
 
     const {pathname} = useLocation()
+
+    const count = Math.ceil(cardPacksTotalCount / pageCount)
+
+    const handleChange = (event: ChangeEvent<unknown>, value: number) => {
+        dispatch(setPageOfPacks(value))
+    };
 
     useEffect(() => {
         if (pathname === Path.PacksList) {
             dispatch(getPacks({}))
-        }else{
+        } else {
             dispatch(getPacks({user_id}))
         }
-    }, [sortPacks,user_id,dispatch,pathname,packName, min, max])
+    }, [sortPacks, user_id, dispatch, pathname, packName, min, max, page])
 
 
     return (
@@ -57,9 +70,14 @@ export const PacksTable = () => {
                     </div>
 
             }
-            <div>
-                <Pagination count={10} variant="outlined" shape="rounded"/>
-            </div>
+            <Stack spacing={2}>
+                <Pagination count={count}
+                            variant="outlined"
+                            shape="rounded"
+                            page={page}
+                            onChange={handleChange}
+                />
+            </Stack>
         </div>
     )
 }
