@@ -6,6 +6,8 @@ import {Person, Style} from "@mui/icons-material";
 import SuperButton from "../common/SuperButton/SuperButton";
 import {logout} from "../../../store/reducers/profileReducer";
 import {useTypedDispatch} from "../../hooks/useTypedDispatch";
+import {setModeIsMyPack, setPacks} from "../../../store/actions/packsReducerActions";
+import {initState} from "../../../store/reducers/packsReducer";
 
 
 type NavbarItemType = {
@@ -19,9 +21,23 @@ const navbarItems: NavbarItemType[] = [
 ]
 
 const NavbarItem = ({path, name, icon}: NavbarItemType) => {
+    const dispatch = useTypedDispatch()
+
+    const handleOnNavClick = () => {
+        if (name === 'Profile') {
+            dispatch(setPacks(initState))
+            dispatch(setModeIsMyPack(true))
+        }
+        if (name === 'Packs list') {
+            dispatch(setPacks(initState))
+            dispatch(setModeIsMyPack(false))
+        }
+    }
+
     return (
         <div className={style.item}>
-            <NavLink to={path} className={(navData) => navData.isActive ? style.active : ''}>
+            <NavLink  to={path} onClick={handleOnNavClick}
+                        className={(navData) => navData.isActive ? style.active : ''}>
                 {name}{icon}
             </NavLink>
         </div>

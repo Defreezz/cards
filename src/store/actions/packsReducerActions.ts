@@ -7,6 +7,7 @@ export enum PACK_ACTIONS {
     SET_PACK_NAME = 'Packs/SET-PACK-NAME',
     SET_RANGE_CARDS = 'Packs/SET-RANGE-CARDS',
     SET_PAGE_OF_PACKS = 'Packs/SET-PAGE-OF-PACKS',
+    SET_IS_MY_PACK = 'Packs/SET-IS-MY-PACK',
 }
 
 export type PacksReducerActionsType =
@@ -16,6 +17,7 @@ export type PacksReducerActionsType =
     | ReturnType<typeof setPackName>
     | ReturnType<typeof setRangeCards>
     | ReturnType<typeof setPageOfPacks>
+    | ReturnType<typeof setModeIsMyPack>
 
 export const setPacks = (packs: PacksResponseType) =>
     ({type: PACK_ACTIONS.SET_PACKS, payload: packs})
@@ -34,6 +36,9 @@ export const setRangeCards = (values: number[]) =>
 
 export const setPageOfPacks = (page: number) =>
     ({type: PACK_ACTIONS.SET_PAGE_OF_PACKS, payload: {page}} as const)
+
+export const setModeIsMyPack = (isMyPack: boolean) =>
+    ({type: PACK_ACTIONS.SET_IS_MY_PACK, payload: {isMyPack}} as const)
 
 
 
