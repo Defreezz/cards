@@ -37,6 +37,8 @@ export const packsReducer = (state = initState, action: PacksReducerActionsType)
         case PACK_ACTIONS.SET_PACK_NAME:
         case PACK_ACTIONS.SET_RANGE_CARDS:
         case PACK_ACTIONS.SET_PAGE_OF_PACKS:
+        case PACK_ACTIONS.SET_PAGE_COUNT:
+        case PACK_ACTIONS.SET_IS_MY_PACK:
             return {
                 ...state,
                 ...action.payload
