@@ -19,9 +19,10 @@ import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {selectMinPacksReducer} from "../../../../store/selectors/selectMinPacksReducer";
 import {selectMaxPacksReducer} from '../../../../store/selectors/selectMaxPacksReducer';
 import {selectPagePacksReducer} from "../../../../store/selectors/selectPagePacksReducer";
-import {setPageOfPacks} from "../../../../store/actions/packsReducerActions";
+import {setPageCount, setPageOfPacks} from "../../../../store/actions/packsReducerActions";
 import {selectCardPacksTotalCountPacksReducer} from '../../../../store/selectors/selectCardPacksTotalCountPacksReducer';
 import {selectPageCountPacksReducer} from "../../../../store/selectors/selectPageCountPacksReducer";
+import {countOfPacksOnPage} from "../../../constants/countOfPacksOnPage";
 
 
 export const PacksTable = () => {
@@ -46,13 +47,17 @@ export const PacksTable = () => {
         dispatch(setPageOfPacks(value))
     };
 
+    const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setPageCount(+e.target.value))
+    }
+
     useEffect(() => {
         if (pathname === Path.PacksList) {
-            dispatch(getPacks())
+            dispatch(getPacks({}))
         } else {
             dispatch(getPacks({user_id}))
         }
-    }, [sortPacks, user_id, dispatch, pathname, packName, min, max, page])
+    }, [sortPacks, user_id, dispatch, pathname, packName, min, max, page, pageCount])
 
 
     return (
@@ -72,16 +77,23 @@ export const PacksTable = () => {
                     </>
 
             }
-            <Stack spacing={2} sx={{marginBottom: '10px'}}>
-                <Pagination
-                    count={count}
-                    variant="outlined"
-                    shape="rounded"
-                    page={page}
-                    onChange={handleChange}
-                />
-            </Stack>
-
+            <div className={style.paginationAndSelect}>
+                <Stack spacing={2}>
+                    <Pagination
+                        count={count}
+                        variant="outlined"
+                        shape="rounded"
+                        page={page}
+                        onChange={handleChange}
+                    />
+                </Stack>
+                <div className={style.selectBlock}>
+                    <span className={style.selectName}>Packs on page:</span>
+                    <select value={pageCount} onChange={onChangeSelect} className={style.select}>
+                        {countOfPacksOnPage.map((c, index) => <option key={index}>{c}</option>)}
+                    </select>
+                </div>
+            </div>
         </div>
     )
 }
