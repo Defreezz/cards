@@ -1,0 +1,1 @@
+export const countOfPacksOnPage : number[] = [10, 20, 30]

@@ -8,6 +8,30 @@
   flex-direction: column;
   align-items: center;
 
+  .paginationAndSelect {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+
+    .selectBlock {
+      margin-left: 40px;
+
+      .selectName {
+        font-size: 19px;
+        color: #61dafb;
+        margin-right: 10px;
+      }
+
+      .select {
+        padding: 10px 5px;
+        border-radius: 5px;
+        font-size: 18px;
+        outline: none;
+      }
+    }
+  }
+
   .headerTableContainer {
     width: 90%;
     height: 48px;
@@ -82,10 +106,12 @@
     overflow: auto;
 
   }
+
   .itemsWrapper::-webkit-scrollbar {
     width: 4px;
     background-color: #595f62;
   }
+
   .itemsWrapper::-webkit-scrollbar-thumb {
     background-color: #cbd3d5;
   }
