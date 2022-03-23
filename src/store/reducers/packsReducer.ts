@@ -4,7 +4,7 @@ import {ThunkType} from "../store";
 import {packAPI} from "../../main/api/api";
 import {setOperationStatus} from "../actions/appReducerActions";
 
-export type InitStateType = PacksResponseType & QueryPackParamsType
+export type InitStateType = PacksResponseType & QueryPackParamsType & {isMyPack:boolean}
 
 export const initState: InitStateType = {
     cardPacks: [{
@@ -27,7 +27,7 @@ export const initState: InitStateType = {
     max: 0,
     user_id: '',
     sortPacks: '',
-
+    isMyPack:true,
 }
 
 export const packsReducer = (state = initState, action: PacksReducerActionsType): InitStateType => {
@@ -37,7 +37,6 @@ export const packsReducer = (state = initState, action: PacksReducerActionsType)
         case PACK_ACTIONS.SET_PACK_NAME:
         case PACK_ACTIONS.SET_RANGE_CARDS:
         case PACK_ACTIONS.SET_PAGE_OF_PACKS:
-        case PACK_ACTIONS.SET_PAGE_COUNT:
             return {
                 ...state,
                 ...action.payload

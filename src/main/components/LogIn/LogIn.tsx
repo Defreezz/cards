@@ -14,8 +14,8 @@ import {setErrorMessage} from "../../../store/actions/appReducerActions";
 export const LogIn = () => {
 
     const dispatch = useDispatch()
-    const [email, setEmail] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
+    const [email, setEmail] = useState<string>('testdefreezz@yandex.by')
+    const [password, setPassword] = useState<string>('13606744')
     const [checked, setChecked] = useState<boolean>(false)
 
     const operationStatus = useSelector(selectOperationStatus)
@@ -63,6 +63,7 @@ export const LogIn = () => {
             </div>
             <div>
                 <SuperInputText
+                    type={'password'}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     onFocus={onFocusEmailAndPasswordInput}

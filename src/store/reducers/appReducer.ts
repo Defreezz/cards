@@ -38,7 +38,7 @@ export const initializeApp = (): ThunkType => async dispatch => {
         dispatch(setIsLoggedIn(true))
     } catch (e: any) {
         dispatch(setIsLoggedIn(false))
-    }finally {
+    } finally {
         dispatch(setInitialization(true))
     }
 }

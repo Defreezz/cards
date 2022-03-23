@@ -3,21 +3,10 @@ import {Search} from "../../common/Search/Search";
 import {PackTableHeader} from "./PackTableHeader";
 import {TableItem} from "../../common/TableItem/TableItem";
 import {useSelector} from "react-redux";
-import {
-    selectOperationStatus,
-    selectPacks,
-    selectSearchPackName,
-    selectSortPacks,
-    selectUserId
-} from "../../../../store/selectors";
+import {selectOperationStatus, selectPacks} from "../../../../store/selectors";
 import {CircularProgress, Pagination, Stack} from "@mui/material";
-import {useLocation} from "react-router-dom";
-import {ChangeEvent, useEffect} from "react";
-import {Path} from "../../Routes/Router";
-import {getPacks} from "../../../../store/reducers/packsReducer";
+import {ChangeEvent} from "react";
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
-import {selectMinPacksReducer} from "../../../../store/selectors/selectMinPacksReducer";
-import {selectMaxPacksReducer} from '../../../../store/selectors/selectMaxPacksReducer';
 import {selectPagePacksReducer} from "../../../../store/selectors/selectPagePacksReducer";
 import {setPageCount, setPageOfPacks} from "../../../../store/actions/packsReducerActions";
 import {selectCardPacksTotalCountPacksReducer} from '../../../../store/selectors/selectCardPacksTotalCountPacksReducer';
@@ -30,16 +19,10 @@ export const PacksTable = () => {
 
     const packs = useSelector(selectPacks)
     const operationStatus = useSelector(selectOperationStatus)
-    const user_id = useSelector(selectUserId)
-    const packName = useSelector(selectSearchPackName)
-    const sortPacks = useSelector(selectSortPacks)
-    const min = useSelector(selectMinPacksReducer)
-    const max = useSelector(selectMaxPacksReducer)
+
     const page = useSelector(selectPagePacksReducer)
     const cardPacksTotalCount = useSelector(selectCardPacksTotalCountPacksReducer)
     const pageCount = useSelector(selectPageCountPacksReducer)
-
-    const {pathname} = useLocation()
 
     const count = Math.ceil(cardPacksTotalCount / pageCount)
 
@@ -50,15 +33,6 @@ export const PacksTable = () => {
     const onChangeSelect = (e: ChangeEvent<HTMLSelectElement>) => {
         dispatch(setPageCount(+e.target.value))
     }
-
-    useEffect(() => {
-        if (pathname === Path.PacksList) {
-            dispatch(getPacks({}))
-        } else {
-            dispatch(getPacks({user_id}))
-        }
-    }, [sortPacks, user_id, dispatch, pathname, packName, min, max, page, pageCount])
-
 
     return (
         <div className={style.tableContainer}>
