@@ -11,6 +11,7 @@ import {selectMinPacksReducer} from "../../../store/selectors/selectMinPacksRedu
 import {useTypedDispatch} from "../../hooks/useTypedDispatch";
 import {selectMaxPacksReducer} from "../../../store/selectors/selectMaxPacksReducer";
 import {AppStoreType} from "../../../store/store";
+import {selectPageCountPacksReducer} from "../../../store/selectors/selectPageCountPacksReducer";
 
 export const Profile = () => {
 
@@ -23,6 +24,7 @@ export const Profile = () => {
     const min = useSelector(selectMinPacksReducer)
     const max = useSelector(selectMaxPacksReducer)
     const page = useSelector(selectPagePacksReducer)
+    const pageCount = useSelector(selectPageCountPacksReducer)
     const isMyPack = useSelector((state: AppStoreType) => state.packs.isMyPack)
 
     const {pathname} = useLocation()
@@ -30,7 +32,7 @@ export const Profile = () => {
     useEffect(() => {
 
         isMyPack && dispatch(getPacks({user_id}))
-    }, [sortPacks, user_id, dispatch, pathname, packName, min, max, page])
+    }, [sortPacks, user_id, dispatch, pathname, packName, min, max, page,pageCount])
 
     return (
         <div className={style.container}>
