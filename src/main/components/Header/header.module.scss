@@ -4,21 +4,26 @@
   justify-content: space-between;
   align-items: center;
   background-color: #5e6972;
-  padding:0 10px;
-.title{
-  font-size: 20px;
-  //font-weight: bold;
-  color: #ffffff;
-}
+  padding: 0 10px;
+
+  .title {
+    font-size: 20px;
+    //font-weight: bold;
+    color: #ffffff;
+  }
+
   .nav {
     display: flex;
+
     .item {
 
       font-size: 20px;
       font-weight: bold;
-      padding: 15px 10px;
+
 
       a {
+        opacity: 0.7;
+        padding: 15px 10px;
         display: flex;
         align-items: center;
         text-decoration: none;
@@ -30,6 +35,8 @@
 
       .active {
         color: #313133;
+        opacity: 1;
+        border-bottom: 2px solid #60d8fa;
       }
 
     }
