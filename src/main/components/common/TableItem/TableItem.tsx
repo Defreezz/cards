@@ -1,12 +1,13 @@
 import style from './tableItem.module.scss'
 import {CardsType, PackType} from "../../../api/types";
 import SuperButton from "../SuperButton/SuperButton";
-import {memo, useCallback} from "react";
+import {memo, useCallback, useState} from "react";
 import {useTypedDispatch} from "../../../hooks/useTypedDispatch";
 import {deletePack} from "../../../../store/reducers/packsReducer";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Path} from "../../Routes/Router";
 import {Rating} from "@mui/material";
+import ModalDelete from "../ModalDelete/ModalDelete";
 
 type TableItemType = {
     pack?: PackType
@@ -18,8 +19,11 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
 
     const dispatch = useTypedDispatch()
 
+    const [showModal, setShowModal] = useState<boolean>(false)
+
     const handleDeleteClick = useCallback(() => {
         pack && dispatch(deletePack(pack._id))
+        setShowModal(false)
     }, [dispatch, pack])
 
     const handleNameClick = useCallback(() => {
@@ -38,10 +42,18 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
                     {pathname !== Path.PacksList &&
                         <>
                             <SuperButton
-                                onClick={handleDeleteClick}
+                                // onClick={handleDeleteClick}
+                                onClick={() => setShowModal(true)}
                             >
                                 Delete
                             </SuperButton>
+                            <ModalDelete showModal={showModal}
+                                         width={600}
+                                         height={200}
+                                         backgroundOnClick={() => setShowModal(false)}
+                                         cancelOnClick={() => setShowModal(false)}
+                                         deleteOnClick={handleDeleteClick}
+                            />
                             <SuperButton
 
                             >
