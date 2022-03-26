@@ -1,4 +1,4 @@
-import {PacksResponseType, QueryPackParamsType} from "../../main/api/types";
+import {PacksResponseType, QueryPackParamsType, UpdatePackType} from "../../main/api/types";
 import {PACK_ACTIONS, PacksReducerActionsType, setPacks} from "../actions/packsReducerActions";
 import {ThunkType} from "../store";
 import {packAPI} from "../../main/api/api";
@@ -86,6 +86,18 @@ export const deletePack = (id: string): ThunkType => async (dispatch, getState) 
     try {
         dispatch(setOperationStatus('loading'))
         await packAPI.deletePack(id)
+        await dispatch(getPacks({user_id}))
+        dispatch(setOperationStatus('completed'))
+    } catch (e) {
+
+    }
+}
+
+export const updatePack = (update: UpdatePackType): ThunkType => async (dispatch, getState) => {
+    const user_id = getState().profile._id
+    try {
+        dispatch(setOperationStatus('loading'))
+        await packAPI.updatePack(update)
         await dispatch(getPacks({user_id}))
         dispatch(setOperationStatus('completed'))
     } catch (e) {

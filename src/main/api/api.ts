@@ -62,7 +62,7 @@ export const packAPI = {
         return instance.delete<{}>(`/cards/pack`, {params: {id}})
     },
     updatePack(update: UpdatePackType) {
-        return instance.put<{}>(`/cards/pack`,{update})
+        return instance.put<{}>(`/cards/pack`,update)
     },
 }
 

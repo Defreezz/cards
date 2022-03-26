@@ -47,9 +47,12 @@ export type NewPackType = {
     deckCover?: string
     private?: boolean
 }
+
 export type UpdatePackType = {
-    _id: string;
-    name?: string;
+    cardsPack: {
+        _id: string;
+        name?: string;
+    }
 }
 
 export type QueryCardsParamsType = {
