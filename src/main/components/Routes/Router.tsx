@@ -8,6 +8,7 @@ import {CreateNewPassword} from "../CreateNewPassword/CreateNewPassword";
 import {LogIn} from "../LogIn/LogIn";
 import {PacksList} from "../PacksList/PacksList";
 import {CardsList} from "../CardsList/CardsList";
+import {LearnPage} from "../CardsList/LearnPage/LearnPage";
 
 export enum Path {
   LogIn = "/login",
@@ -17,6 +18,7 @@ export enum Path {
   CardsList = "/cards-list/:cardsPack_id/*",
   ResetPassword = "/reset-password",
   CreatePassword = "/create-new-password",
+  Learn = "/learn/:cardsPack_id/*",
   Error404 = "/*",
 }
 
@@ -28,6 +30,7 @@ export const Router = () => {
         <Route path={Path.LogIn} element={ <LogIn />} />
         <Route path={Path.Registration} element={<Registration />} />
         <Route path={Path.Profile} element={<Profile />} />
+        <Route path={Path.Learn} element={<LearnPage />} />
         <Route path={Path.PacksList} element={<PacksList />} />
         <Route path={Path.CardsList} element={<CardsList />} />
         <Route path={Path.ResetPassword} element={<ResetPassword />} />

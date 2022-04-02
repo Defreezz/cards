@@ -15,7 +15,8 @@ type TableItemType = {
     card?: CardsType
 }
 export const TableItem = memo(({pack, card}: TableItemType) => {
-    const navigate = useNavigate()
+    const navigateToCard = useNavigate()
+    const navigateToLearnPack = useNavigate()
     const {pathname} = useLocation()
 
     const dispatch = useTypedDispatch()
@@ -35,8 +36,12 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
     }, [dispatch, pack, name])
 
     const handleNameClick = useCallback(() => {
-        navigate(`/cards-list/${pack?._id}`)
-    }, [navigate, pack])
+        navigateToCard(`/cards-list/${pack?._id}`)
+    }, [navigateToCard, pack])
+
+    const handleLearnClick = useCallback(() => {
+       navigateToLearnPack(`/learn/${pack?._id}`)
+    }, [navigateToLearnPack,pack])
 
     if (pack) {
         return (
@@ -79,7 +84,7 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
                             />
                         </>}
                     <SuperButton
-
+                        onClick={handleLearnClick}
                     >
                         Learn
                     </SuperButton>
