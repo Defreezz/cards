@@ -1,15 +1,15 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import thunk, {ThunkAction} from "redux-thunk";
 import {loginReducer} from "./reducers/loginReducer";
 import {registrationReducer} from "./reducers/registrationReducer";
 import {profileReducer} from "./reducers/profileReducer";
-import {ProfileReducersActionsType} from "./actions/profileReducerActions";
 import {appReducer} from "./reducers/appReducer";
-import {AppReducerActionsType} from "./actions/appReducerActions";
 import {packsReducer} from "./reducers/packsReducer";
+import {cardsReducer} from "./reducers/cardsReducer";
+import {ProfileReducersActionsType} from "./actions/profileReducerActions";
 import {PacksReducerActionsType} from "./actions/packsReducerActions";
 import {CardsReducerActionsType} from "./actions/cardsReducerActions";
-import {cardsReducer} from "./reducers/cardsReducer";
+import {AppReducerActionsType} from "./actions/appReducerActions";
+import thunk, {ThunkAction} from "redux-thunk";
 
 export type AppStoreType = ReturnType<typeof rootReducers>;
 

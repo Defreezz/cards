@@ -5,7 +5,6 @@ export const CardsList = () => {
 
     return (
         <div className={style.container}>
-
             <CardsTable/>
         </div>
     )
