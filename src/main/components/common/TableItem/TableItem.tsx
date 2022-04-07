@@ -40,8 +40,8 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
     }, [navigateToCard, pack])
 
     const handleLearnClick = useCallback(() => {
-       navigateToLearnPack(`/learn/${pack?._id}`)
-    }, [navigateToLearnPack,pack])
+        navigateToLearnPack(`/learn/${pack?._id}`)
+    }, [navigateToLearnPack, pack])
 
     if (pack) {
         return (
@@ -59,12 +59,13 @@ export const TableItem = memo(({pack, card}: TableItemType) => {
                             >
                                 Delete
                             </SuperButton>
-                            <ModalDelete showModal={showModalDelete}
-                                         width={600}
-                                         height={200}
-                                         backgroundOnClick={() => setShowModalDelete(false)}
-                                         cancelOnClick={() => setShowModalDelete(false)}
-                                         deleteOnClick={handleDeleteClick}
+                            <ModalDelete
+                                showModal={showModalDelete}
+                                width={600}
+                                height={200}
+                                backgroundOnClick={() => setShowModalDelete(false)}
+                                cancelOnClick={() => setShowModalDelete(false)}
+                                deleteOnClick={handleDeleteClick}
                             />
                             <SuperButton
                                 onClick={() => setShowModalUpdate(true)}
